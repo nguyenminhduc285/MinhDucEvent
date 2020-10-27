@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.WebApp", "MinhDucEvent.WebApp\MinhDucEvent.WebApp.csproj", "{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC201298-BC30-4EBD-9295-CCA4C014F64A}
+	EndGlobalSection
+EndGlobal
