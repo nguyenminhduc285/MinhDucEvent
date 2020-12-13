@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LazZiya.ExpressLocalization" Version="4.0.4" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Logging" Version="6.8.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.8.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
@@ -15,4 +19,5 @@
     <ProjectReference Include="..\MinhDucEvent.Utilities\MinhDucEvent.Utilities.csproj" />
     <ProjectReference Include="..\MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj" />
   </ItemGroup>
+
 </Project>

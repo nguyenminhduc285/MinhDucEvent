@@ -5,14 +5,30 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhDucEvent.WebApp", "MinhDucEvent.WebApp\MinhDucEvent.WebApp.csproj", "{19067DC1-0D76-4110-B57A-5BEE15D2B8F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07E9C0B1-26CA-4A60-B734-642C71DF81FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution Items", "0. Solution Items", "{07E9C0B1-26CA-4A60-B734-642C71DF81FE}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.Data", "MinhDucEvent.Data\MinhDucEvent.Data.csproj", "{AA83AEAB-D77C-4642-845B-95F470716A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhDucEvent.Data", "MinhDucEvent.Data\MinhDucEvent.Data.csproj", "{AA83AEAB-D77C-4642-845B-95F470716A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.Application", "MinhDucEvent.Application\MinhDucEvent.Application.csproj", "{1486A2D1-D934-49F3-BD2B-26C7216402AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinhDucEvent.Application", "MinhDucEvent.Application\MinhDucEvent.Application.csproj", "{1486A2D1-D934-49F3-BD2B-26C7216402AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Infrastructure", "1. Infrastructure", "{B5DA4BD7-F4CD-42B5-89CD-CA012321645F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.Utilities", "MinhDucEvent.Utilities\MinhDucEvent.Utilities.csproj", "{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.ViewModels", "MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj", "{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{93ECEC9F-ADF6-450B-8729-1C76E62DF4E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Hosts", "3. Hosts", "{5F5266AF-69AF-4530-A383-D6109E095833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.AdminApp", "MinhDucEvent.AdminApp\MinhDucEvent.AdminApp.csproj", "{384C98DA-1CBE-449A-899A-855BA5F888AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.BackendApi", "MinhDucEvent.BackendApi\MinhDucEvent.BackendApi.csproj", "{FC75F06C-FF34-4F03-A87C-CDFFC159B504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhDucEvent.ApiIntegration", "MinhDucEvent.ApiIntegration\MinhDucEvent.ApiIntegration.csproj", "{0F9C604A-9150-4266-A869-A2E2EC316A33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +48,39 @@ Global
 		{1486A2D1-D934-49F3-BD2B-26C7216402AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1486A2D1-D934-49F3-BD2B-26C7216402AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1486A2D1-D934-49F3-BD2B-26C7216402AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384C98DA-1CBE-449A-899A-855BA5F888AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384C98DA-1CBE-449A-899A-855BA5F888AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384C98DA-1CBE-449A-899A-855BA5F888AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384C98DA-1CBE-449A-899A-855BA5F888AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC75F06C-FF34-4F03-A87C-CDFFC159B504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC75F06C-FF34-4F03-A87C-CDFFC159B504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC75F06C-FF34-4F03-A87C-CDFFC159B504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC75F06C-FF34-4F03-A87C-CDFFC159B504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F9C604A-9150-4266-A869-A2E2EC316A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9C604A-9150-4266-A869-A2E2EC316A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9C604A-9150-4266-A869-A2E2EC316A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9C604A-9150-4266-A869-A2E2EC316A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{19067DC1-0D76-4110-B57A-5BEE15D2B8F6} = {5F5266AF-69AF-4530-A383-D6109E095833}
+		{AA83AEAB-D77C-4642-845B-95F470716A58} = {93ECEC9F-ADF6-450B-8729-1C76E62DF4E1}
+		{1486A2D1-D934-49F3-BD2B-26C7216402AB} = {93ECEC9F-ADF6-450B-8729-1C76E62DF4E1}
+		{2E8F4AF8-23B9-449C-8228-B4FE6FB259A3} = {B5DA4BD7-F4CD-42B5-89CD-CA012321645F}
+		{FF4E2A33-C586-4A93-9ED4-AF3F6D28CA20} = {B5DA4BD7-F4CD-42B5-89CD-CA012321645F}
+		{384C98DA-1CBE-449A-899A-855BA5F888AF} = {5F5266AF-69AF-4530-A383-D6109E095833}
+		{FC75F06C-FF34-4F03-A87C-CDFFC159B504} = {5F5266AF-69AF-4530-A383-D6109E095833}
+		{0F9C604A-9150-4266-A869-A2E2EC316A33} = {5F5266AF-69AF-4530-A383-D6109E095833}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC201298-BC30-4EBD-9295-CCA4C014F64A}

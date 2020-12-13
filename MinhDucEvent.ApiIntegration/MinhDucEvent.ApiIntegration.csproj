@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MinhDucEvent.Data\MinhDucEvent.Data.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MinhDucEvent.Utilities\MinhDucEvent.Utilities.csproj" />
     <ProjectReference Include="..\MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj" />
   </ItemGroup>
