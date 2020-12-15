@@ -49,6 +49,8 @@ namespace MinhDucEvent.Data.EF
 
             modelBuilder.ApplyConfiguration(new EquipmentTranslationConfiguration());
 
+            modelBuilder.ApplyConfiguration(new EquipmentImageConfiguration());
+
             modelBuilder.ApplyConfiguration(new LanguageConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
@@ -94,6 +96,7 @@ namespace MinhDucEvent.Data.EF
         public DbSet<ContentTagTranslation> ContentTagTranslations { get; set; }
         public DbSet<ContentTranslation> ContentTranslations { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentImage> EquipmentImages { get; set; }
         public DbSet<EquipmentCategory> EquipmentCategories { get; set; }
         public DbSet<EquipmentCategoryTranslation> EquipmentCategoryTranslations { get; set; }
         public DbSet<EquipmentInCategory> EquipmentInCategories { get; set; }
@@ -110,7 +113,6 @@ namespace MinhDucEvent.Data.EF
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Slide> Slides { get; set; }
     }
 }

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\user-content\" />
+  </ItemGroup>
+
 </Project>
