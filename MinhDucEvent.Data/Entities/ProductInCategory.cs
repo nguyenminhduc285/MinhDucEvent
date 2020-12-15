@@ -12,6 +12,6 @@ namespace MinhDucEvent.Data.Entities
 
         public int CategoryId { get; set; }
 
-        public CategoryEquipment Category { get; set; }
+        public Category Category { get; set; }
     }
 }

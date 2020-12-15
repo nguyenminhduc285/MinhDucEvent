@@ -11,7 +11,7 @@ namespace MinhDucEvent.Data.Entities
         public int IsShowOnHome { get; set; }
         public int ParentId { get; set; }
         public int Status { get; set; }
-        public List<EquipmentInCategory> EquipmentInCategorys { get; set; }
+        public List<EquipmentInCategory> EquipmentInCategories { get; set; }
         public List<EquipmentCategoryTranslation> EquipmentCategoryTranslations { get; set; }
     }
 }

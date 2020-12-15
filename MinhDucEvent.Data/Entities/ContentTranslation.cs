@@ -8,11 +8,11 @@ namespace MinhDucEvent.Data.Entities
     {
         public int Id { get; set; }
         public int ContentId { get; set; }
-        public int LanguageId { get; set; }
+        public string LanguageId { get; set; }
         public string Name { get; set; }
         public string MetaTitle { get; set; }
         public string Description { get; set; }
-        public string Detail { get; set; }
+        public string Details { get; set; }
         public string MetaKeywords { get; set; }
         public string MetaDescriptions { get; set; }
 

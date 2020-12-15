@@ -12,10 +12,11 @@ namespace MinhDucEvent.Data.Entities
         public string Metatitle { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public string Detail { get; set; }
+        public string Details { get; set; }
         public string MetaKeywords { get; set; }
         public string LanguageId { set; get; }
 
         public Language Language { get; set; }
+        public About About { get; set; }
     }
 }

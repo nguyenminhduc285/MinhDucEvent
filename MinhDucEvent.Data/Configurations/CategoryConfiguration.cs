@@ -8,9 +8,9 @@ using System.Text;
 
 namespace eShopSolution.Data.Configurations
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEquipment>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<CategoryEquipment> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
 

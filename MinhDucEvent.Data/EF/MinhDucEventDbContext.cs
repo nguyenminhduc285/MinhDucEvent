@@ -1,13 +1,14 @@
 ﻿using eShopSolution.Data.Configurations;
 using eShopSolution.Data.Extensions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MinhDucEvent.Data.Entities;
 using System;
 
 namespace MinhDucEvent.Data.EF
 {
-    public class MinhDucEventDbContext : DbContext
+    public class MinhDucEventDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public MinhDucEventDbContext(DbContextOptions options) : base(options)
         {
@@ -16,30 +17,59 @@ namespace MinhDucEvent.Data.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using fluent API
+            modelBuilder.ApplyConfiguration(new AboutConfiguration());
+            modelBuilder.ApplyConfiguration(new AboutTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
 
-            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
 
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContactConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContentConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContentInTagConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContentTagConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContentTagTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ContentTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EquipmentCategoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EquipmentCategoryTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EquipmentConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EquipmentInCategoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EquipmentTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
 
-            modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
-            modelBuilder.ApplyConfiguration(new CartConfiguration());
-
-            modelBuilder.ApplyConfiguration(new ContactConfiguration());
-
-            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
-
-            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
-
-            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductDetailsConfiguration());
 
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+
             modelBuilder.ApplyConfiguration(new SlideConfiguration());
+
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRole").HasKey(x => new { x.UserId, x.RoleId });
@@ -53,8 +83,21 @@ namespace MinhDucEvent.Data.EF
         }
 
         // base.OnModelCreating(modelBuilder);
-        public DbSet<Product> Products { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> ProductDetails { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<AboutTranslation> AboutTranslations { get; set; }
+        public DbSet<Content> Contents { get; set; }
+        public DbSet<ContentInTag> ContentInTags { get; set; }
+        public DbSet<ContentTag> ContentTags { get; set; }
+        public DbSet<ContentTagTranslation> ContentTagTranslations { get; set; }
+        public DbSet<ContentTranslation> ContentTranslations { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<EquipmentCategory> EquipmentCategories { get; set; }
+        public DbSet<EquipmentCategoryTranslation> EquipmentCategoryTranslations { get; set; }
+        public DbSet<EquipmentInCategory> EquipmentInCategories { get; set; }
+        public DbSet<EquipmentTranslation> EquipmentTranslations { get; set; }
         public DbSet<EquipmentCategory> Categories { get; set; }
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<Cart> Carts { get; set; }

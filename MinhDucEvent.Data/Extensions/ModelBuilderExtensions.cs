@@ -21,8 +21,8 @@ namespace eShopSolution.Data.Extensions
                 new Language() { Id = "vi", Name = "Tiếng Việt", IsDefault = true },
                 new Language() { Id = "en", Name = "English", IsDefault = false });
 
-            modelBuilder.Entity<CategoryEquipment>().HasData(
-                new CategoryEquipment()
+            modelBuilder.Entity<Category>().HasData(
+                new Category()
                 {
                     Id = 1,
                     IsShowOnHome = true,
@@ -30,7 +30,7 @@ namespace eShopSolution.Data.Extensions
                     SortOrder = 1,
                     Status = Status.Active,
                 },
-                 new CategoryEquipment()
+                 new Category()
                  {
                      Id = 2,
                      IsShowOnHome = true,
@@ -53,7 +53,6 @@ namespace eShopSolution.Data.Extensions
                DateCreated = DateTime.Now,
                OriginalPrice = 100000,
                Price = 200000,
-               Stock = 0,
                ViewCount = 0,
            });
             modelBuilder.Entity<ProductTranslation>().HasData(

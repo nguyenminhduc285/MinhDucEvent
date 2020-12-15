@@ -13,7 +13,8 @@ namespace MinhDucEvent.Data.Entities
         public int Details { get; set; }
         public int SeoDescription { get; set; }
         public int SeoTitle { get; set; }
-        public int LanguageId { get; set; }
+        public int SeoAlias { get; set; }
+        public string LanguageId { get; set; }
         public Equipment Equipment { get; set; }
 
         public Language Language { get; set; }

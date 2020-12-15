@@ -9,7 +9,7 @@ namespace MinhDucEvent.Data.Entities
         public int Id { get; set; }
         public int ContentTagId { get; set; }
         public string LanguageId { get; set; }
-        public int TagName { get; set; }
+        public string TagName { get; set; }
         public ContentTag ContentTag { get; set; }
 
         public Language Language { get; set; }

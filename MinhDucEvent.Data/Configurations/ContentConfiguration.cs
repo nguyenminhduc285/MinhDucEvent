@@ -7,14 +7,15 @@ using System.Text;
 
 namespace eShopSolution.Data.Configurations
 {
-    public class EquipmentConfiguration : IEntityTypeConfiguration<Equipment>
+    public class ContentConfiguration : IEntityTypeConfiguration<Content>
     {
-        public void Configure(EntityTypeBuilder<Equipment> builder)
+        public void Configure(EntityTypeBuilder<Content> builder)
         {
-            builder.ToTable("Equipments");
-
+            builder.ToTable("Contents");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Image).IsRequired().HasMaxLength(200);
+
+            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.Image).HasMaxLength(200);
         }
     }
 }

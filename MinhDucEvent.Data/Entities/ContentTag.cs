@@ -10,8 +10,7 @@ namespace MinhDucEvent.Data.Entities
         public int ContentId { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Content Content { get; set; }
-
         public List<ContentTagTranslation> ContentTagTranslations { get; set; }
+        public List<ContentInTag> ContentInTags { get; set; }
     }
 }

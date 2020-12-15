@@ -14,6 +14,6 @@ namespace MinhDucEvent.Data.Entities
 
         public List<EquipmentInCategory> EquipmentInCategories { get; set; }
 
-        public Product Product { get; set; }
+        public List<ProductDetails> ProductDetails { get; set; }
     }
 }
