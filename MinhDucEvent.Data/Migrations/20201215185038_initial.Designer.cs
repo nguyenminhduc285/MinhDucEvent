@@ -10,7 +10,7 @@ using MinhDucEvent.Data.EF;
 namespace MinhDucEvent.Data.Migrations
 {
     [DbContext(typeof(MinhDucEventDbContext))]
-    [Migration("20201215101356_initial")]
+    [Migration("20201215185038_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -245,13 +245,13 @@ namespace MinhDucEvent.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRole");
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "afb7ae50-8d30-497d-94a3-88ced6cf34fb",
+                            ConcurrencyStamp = "efc77f96-92ba-4e28-94d0-3680ed3aabe2",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -317,14 +317,14 @@ namespace MinhDucEvent.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUser");
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c2981ad0-44f5-4e6b-bd47-5fc2d39a99c2",
+                            ConcurrencyStamp = "9985ae6d-8a71-4442-ab79-6b096e81c9ab",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -333,7 +333,7 @@ namespace MinhDucEvent.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAELth53G9Nk11Jakqr5fc2L/DMMOsxyORbuEbyhX5Xd/Fsl+wJSiRmRuqsxXnTvcMxA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGz+ZyEdI4Muw2PCcjHna5LOodbmMGFk7VpOqq1ukPQ1hipKR7CR6tdV5GTyBVjNng==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -688,7 +688,7 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("DateCreate")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
@@ -771,6 +771,44 @@ namespace MinhDucEvent.Data.Migrations
                     b.ToTable("EquipmentCategoryTranslations");
                 });
 
+            modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Caption")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EquipmentId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.ToTable("EquipmentImages");
+                });
+
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentInCategory", b =>
                 {
                     b.Property<int>("EquipmentCategoryId")
@@ -793,12 +831,12 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("Description")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Details")
+                    b.Property<string>("Details")
                         .HasMaxLength(500)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("EquipmentId")
                         .HasColumnType("int");
@@ -809,19 +847,21 @@ namespace MinhDucEvent.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(5)");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("SeoAlias")
+                    b.Property<string>("SeoAlias")
+                        .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("SeoDescription")
-                        .HasColumnType("int");
+                    b.Property<string>("SeoDescription")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SeoTitle")
-                        .HasColumnType("int");
+                    b.Property<string>("SeoTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -963,7 +1003,7 @@ namespace MinhDucEvent.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 12, 15, 17, 13, 55, 744, DateTimeKind.Local).AddTicks(8017),
+                            DateCreated = new DateTime(2020, 12, 16, 1, 50, 37, 128, DateTimeKind.Local).AddTicks(9357),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             ViewCount = 0
@@ -1438,6 +1478,17 @@ namespace MinhDucEvent.Data.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentImage", b =>
+                {
+                    b.HasOne("MinhDucEvent.Data.Entities.Equipment", "Equipment")
+                        .WithMany("EquipmentImages")
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Equipment");
+                });
+
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentInCategory", b =>
                 {
                     b.HasOne("MinhDucEvent.Data.Entities.EquipmentCategory", "EquipmentCategory")
@@ -1622,6 +1673,8 @@ namespace MinhDucEvent.Data.Migrations
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.Equipment", b =>
                 {
+                    b.Navigation("EquipmentImages");
+
                     b.Navigation("EquipmentInCategories");
 
                     b.Navigation("EquipmentTranslations");
