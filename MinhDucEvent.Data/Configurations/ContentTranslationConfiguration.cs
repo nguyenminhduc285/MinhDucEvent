@@ -16,10 +16,10 @@ namespace MinhDucEvent.Data.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.MetaTitle).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.MetaDescriptions).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.MetaKeywords).IsRequired().HasMaxLength(200);
-            builder.Property(x => x.Details).IsRequired().HasColumnType("ntext");
+            builder.Property(x => x.MetaTitle).HasMaxLength(200);
+            builder.Property(x => x.MetaDescriptions).HasMaxLength(200);
+            builder.Property(x => x.MetaKeywords).HasMaxLength(200);
+            builder.Property(x => x.Details).HasColumnType("ntext");
 
             builder.Property(x => x.LanguageId).IsUnicode(false).IsRequired().HasMaxLength(5);
 

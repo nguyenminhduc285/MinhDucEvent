@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MinhDucEvent.Application.Catalog.Categories;
 using MinhDucEvent.Application.Catalog.Equipments;
 using MinhDucEvent.Application.Common;
 using MinhDucEvent.Application.System.Languages;
@@ -48,6 +49,7 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
+            services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
 
             //config validator

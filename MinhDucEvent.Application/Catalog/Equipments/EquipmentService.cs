@@ -154,23 +154,29 @@ namespace MinhDucEvent.Application.Catalog.Equipments
         public async Task<PagedResult<EquipmentVm>> GetAllPaging(GetManageEquipmentPagingRequest request)
         {
             //1. Select join
-            var query = from p in _context.Equipments
-                        join pt in _context.EquipmentTranslations on p.Id equals pt.EquipmentId
-                        join pic in _context.EquipmentInCategories on p.Id equals pic.EquipmentId into ppic
-                        from pic in ppic.DefaultIfEmpty()
-                        join c in _context.Categories on pic.EquipmentCategoryId equals c.Id into picc
-                        from c in picc.DefaultIfEmpty()
-                        join pi in _context.EquipmentImages on p.Id equals pi.EquipmentId into ppi
-                        from pi in ppi.DefaultIfEmpty()
-                        where pt.LanguageId == request.LanguageId && pi.IsDefault == true
-                        select new { p, pt, pic, pi };
+            var query = from e in _context.Equipments
+                        join et in _context.EquipmentTranslations on e.Id equals et.EquipmentId
+                        join eic in _context.EquipmentInCategories on e.Id equals eic.EquipmentId into eeic
+                        from eic in eeic.DefaultIfEmpty()
+                        join ec in _context.EquipmentCategories on eic.EquipmentCategoryId equals ec.Id into eicc
+                        from ec in eicc.DefaultIfEmpty()
+                        join ei in _context.EquipmentImages on e.Id equals ei.EquipmentId into eei
+                        from ei in eei.DefaultIfEmpty()
+                        where et.LanguageId == request.LanguageId && ei.IsDefault == true
+                        select new { e, et, eic, ei };
+            /*var query = from e in _context.Equipments
+                        join et in _context.EquipmentTranslations on e.Id equals et.EquipmentId
+                        join ei in _context.EquipmentImages on e.Id equals ei.EquipmentId into eei
+                        from ei in eei.DefaultIfEmpty()
+                        where et.LanguageId == request.LanguageId
+                        select new { e, et, ei };*/
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
-                query = query.Where(x => x.pt.Name.Contains(request.Keyword));
+                query = query.Where(x => x.et.Name.Contains(request.Keyword));
 
             if (request.EquipmentCategoryId != null && request.EquipmentCategoryId != 0)
             {
-                query = query.Where(p => p.pic.EquipmentCategoryId == request.EquipmentCategoryId);
+                query = query.Where(e => e.eic.EquipmentCategoryId == request.EquipmentCategoryId);
             }
 
             //3. Paging
@@ -180,17 +186,17 @@ namespace MinhDucEvent.Application.Catalog.Equipments
                 .Take(request.PageSize)
                 .Select(x => new EquipmentVm()
                 {
-                    Id = x.p.Id,
-                    Name = x.pt.Name,
-                    DateCreated = x.p.DateCreated,
-                    Description = x.pt.Description,
-                    Details = x.pt.Details,
-                    LanguageId = x.pt.LanguageId,
-                    SeoAlias = x.pt.SeoAlias,
-                    SeoDescription = x.pt.SeoDescription,
-                    SeoTitle = x.pt.SeoTitle,
-                    Stock = x.p.Stock,
-                    ThumbnailImage = x.pi.ImagePath
+                    Id = x.e.Id,
+                    Name = x.et.Name,
+                    DateCreated = x.e.DateCreated,
+                    Description = x.et.Description,
+                    Details = x.et.Details,
+                    LanguageId = x.et.LanguageId,
+                    SeoAlias = x.et.SeoAlias,
+                    SeoDescription = x.et.SeoDescription,
+                    SeoTitle = x.et.SeoTitle,
+                    Stock = x.e.Stock,
+                    ThumbnailImage = x.ei.ImagePath
                 }).ToListAsync();
 
             //4. Select and projection
@@ -230,7 +236,7 @@ namespace MinhDucEvent.Application.Catalog.Equipments
                 SeoDescription = EquipmentTranslation != null ? EquipmentTranslation.SeoDescription : null,
                 SeoTitle = EquipmentTranslation != null ? EquipmentTranslation.SeoTitle : null,
                 Stock = Equipment.Stock,
-                Categories = categories,
+                EquipmentCategories = categories,
                 ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return EquipmentViewModel;
@@ -340,6 +346,31 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return "/" + SystemConstants.USER_CONTENT_FOLDER_NAME + "/" + fileName;
+        }
+
+        public async Task<List<EquipmentVm>> GetAll(string languageId)
+        {
+            var query = from e in _context.Equipments
+                        join et in _context.EquipmentTranslations on e.Id equals et.EquipmentId
+                        where et.LanguageId == languageId
+                        select new { e, et };
+
+            return await query.Select(x => new EquipmentVm()
+            {
+                Id = x.e.Id,
+                Name = x.et.Name,
+                DateCreated = x.e.DateCreated,
+                Description = x.et.Description,
+                LanguageId = x.et.LanguageId,
+                Details = x.et.Details,
+                SeoAlias = x.et.SeoAlias,
+                SeoDescription = x.et.SeoDescription,
+                SeoTitle = x.et.SeoTitle,
+                Stock = x.e.Stock,
+                //chua xu ly dc
+                EquipmentCategories = null,
+                ThumbnailImage = x.e.Image
+            }).ToListAsync();
         }
     }
 }

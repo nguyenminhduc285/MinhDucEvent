@@ -22,12 +22,12 @@ namespace MinhDucEvent.ApiIntegration
 
         public async Task<List<EquipmentCategoryVm>> GetAll(string languageId)
         {
-            return await GetListAsync<EquipmentCategoryVm>("/api/categories?languageId=" + languageId);
+            return await GetListAsync<EquipmentCategoryVm>("/api/equipmentcategories?languageId=" + languageId);
         }
 
         public async Task<EquipmentCategoryVm> GetById(string languageId, int id)
         {
-            return await GetAsync<EquipmentCategoryVm>($"/api/categories/{id}/{languageId}");
+            return await GetAsync<EquipmentCategoryVm>($"/api/equipmentcategories/{id}/{languageId}");
         }
     }
 }

@@ -7,6 +7,7 @@ using MinhDucEvent.Utilities.Constants;
 using MinhDucEvent.ViewModels.Catalog.Equipments;
 using MinhDucEvent.ViewModels.Common;
 using MinhDucEvent.ViewModels.System.Equipments;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,7 +29,8 @@ namespace MinhDucEvent.AdminApp.Controllers
             _equipmentCategoryApi = equipmentCategoryApiClient;
         }
 
-        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 10)
+        [HttpGet]
+        public async Task<IActionResult> Index(string keyword, int? equipmentcategoryId, int pageIndex = 1, int pageSize = 5)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
@@ -38,7 +40,7 @@ namespace MinhDucEvent.AdminApp.Controllers
                 PageIndex = pageIndex,
                 PageSize = pageSize,
                 LanguageId = languageId,
-                EquipmentCategoryId = categoryId
+                EquipmentCategoryId = equipmentcategoryId
             };
             var data = await _equipmentApiClient.GetPagings(request);
             ViewBag.Keyword = keyword;
@@ -48,7 +50,7 @@ namespace MinhDucEvent.AdminApp.Controllers
             {
                 Text = x.Name,
                 Value = x.Id.ToString(),
-                Selected = categoryId.HasValue && categoryId.Value == x.Id
+                Selected = equipmentcategoryId.HasValue && equipmentcategoryId.Value == x.Id
             });
 
             if (TempData["result"] != null)
@@ -151,15 +153,15 @@ namespace MinhDucEvent.AdminApp.Controllers
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
             var EquipmentObj = await _equipmentApiClient.GetById(id, languageId);
-            var categories = await _equipmentCategoryApi.GetAll(languageId);
+            var equipmentcategories = await _equipmentCategoryApi.GetAll(languageId);
             var categoryAssignRequest = new EquipmentCategoryAssignRequest();
-            foreach (var role in categories)
+            foreach (var role in equipmentcategories)
             {
                 categoryAssignRequest.Categories.Add(new SelectItem()
                 {
                     Id = role.Id.ToString(),
                     Name = role.Name,
-                    Selected = EquipmentObj.Categories.Contains(role.Name)
+                    Selected = EquipmentObj.EquipmentCategories.Contains(role.Name)
                 });
             }
             return categoryAssignRequest;

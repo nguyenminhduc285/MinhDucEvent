@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MinhDucEvent.Application.Catalog.Equipments;
 using MinhDucEvent.ViewModels.Catalog.EquipmentImages;
 using MinhDucEvent.ViewModels.Catalog.Equipments;
+using System;
 using System.Threading.Tasks;
 
 namespace MinhDucEvent.BackendApi.Controllers

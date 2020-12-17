@@ -22,6 +22,8 @@ namespace MinhDucEvent.Application.Catalog.Categories
                         join ect in _context.EquipmentCategoryTranslations on ec.Id equals ect.EquipmentCategoryId
                         where ect.LanguageId == languageId
                         select new { ec, ect };
+            int totalRow = await query.CountAsync();
+
             return await query.Select(x => new EquipmentCategoryVm()
             {
                 Id = x.ec.Id,
