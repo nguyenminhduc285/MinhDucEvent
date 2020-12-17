@@ -18,8 +18,8 @@ namespace MinhDucEvent.Data.Configurations
 
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
 
-            builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
-            builder.Property(x => x.Url).HasMaxLength(200).IsRequired();
+            builder.Property(x => x.Description).HasMaxLength(200);
+            builder.Property(x => x.Url).HasMaxLength(200);
             builder.Property(x => x.SortOrder).IsRequired();
             builder.Property(x => x.Image).IsRequired();
         }

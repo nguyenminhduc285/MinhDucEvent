@@ -20,7 +20,5 @@ namespace MinhDucEvent.ApiIntegration
         Task<EquipmentVm> GetById(int id, string languageId);
 
         Task<bool> DeleteEquipment(int id);
-
-        Task GetAll(string languageId);
     }
 }

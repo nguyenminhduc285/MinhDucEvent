@@ -175,8 +175,8 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SortOrder = table.Column<int>(type: "int", nullable: false),
-                    IsShowOnHome = table.Column<int>(type: "int", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false),
+                    IsShowOnHome = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    ParentId = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
@@ -192,7 +192,7 @@ namespace MinhDucEvent.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Image = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -272,8 +272,8 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Url = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SortOrder = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
@@ -342,7 +342,7 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EquipmentId = table.Column<int>(type: "int", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Caption = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -391,11 +391,11 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AboutId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Metatitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Metatitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    Image = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     MetaKeywords = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
                 },
@@ -423,11 +423,11 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     SeoDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false),
-                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -482,11 +482,11 @@ namespace MinhDucEvent.Data.Migrations
                     ContentId = table.Column<int>(type: "int", nullable: false),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    MetaTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Details = table.Column<string>(type: "ntext", nullable: false),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    MetaDescriptions = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Details = table.Column<string>(type: "ntext", nullable: true),
+                    MetaKeywords = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    MetaDescriptions = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -512,10 +512,10 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EquipmentCategoryId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<int>(type: "int", maxLength: 200, nullable: false),
-                    SeoDescription = table.Column<int>(type: "int", maxLength: 500, nullable: false),
-                    SeoTitle = table.Column<int>(type: "int", maxLength: 200, nullable: false),
-                    SeoAlias = table.Column<int>(type: "int", maxLength: 200, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    SeoDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    SeoTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
                 },
                 constraints: table =>
@@ -547,7 +547,7 @@ namespace MinhDucEvent.Data.Migrations
                     Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
                 },
                 constraints: table =>
@@ -600,7 +600,7 @@ namespace MinhDucEvent.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Caption = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -654,7 +654,7 @@ namespace MinhDucEvent.Data.Migrations
                     Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     SeoDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SeoTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SeoAlias = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     LanguageId = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
                 },
                 constraints: table =>
@@ -711,10 +711,10 @@ namespace MinhDucEvent.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ShipName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ShipAddress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ShipEmail = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    ShipPhoneNumber = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ShipName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    ShipAddress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    ShipEmail = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    ShipPhoneNumber = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -786,9 +786,9 @@ namespace MinhDucEvent.Data.Migrations
                 columns: new[] { "Key", "Value" },
                 values: new object[,]
                 {
-                    { "HomeTitle", "This is home page of eShopSolution" },
-                    { "HomeKeyword", "This is keyword of eShopSolution" },
-                    { "HomeDescription", "This is description of eShopSolution" }
+                    { "HomeTitle", "This is home page of MinhDucEvent" },
+                    { "HomeKeyword", "This is keyword of MinhDucEvent" },
+                    { "HomeDescription", "This is description of MinhDucEvent" }
                 });
 
             migrationBuilder.InsertData(
@@ -797,12 +797,21 @@ namespace MinhDucEvent.Data.Migrations
                 values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), new Guid("69bd714f-9576-45ba-b5b7-f00649be00de") });
 
             migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "DateCreate", "IsShowOnHome", "ParentId", "SortOrder", "Status" },
+                table: "EquipmentCategories",
+                columns: new[] { "Id", "IsShowOnHome", "ParentId", "SortOrder", "Status" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, 2, 1 },
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, 1, 1 }
+                    { 2, true, null, 2, 1 },
+                    { 1, true, null, 1, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Equipments",
+                columns: new[] { "Id", "DateCreated", "Image", "Stock" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2020, 12, 18, 2, 22, 26, 493, DateTimeKind.Local).AddTicks(9580), null, 12 },
+                    { 2, new DateTime(2020, 12, 18, 2, 22, 26, 494, DateTimeKind.Local).AddTicks(8569), null, 12 }
                 });
 
             migrationBuilder.InsertData(
@@ -810,19 +819,14 @@ namespace MinhDucEvent.Data.Migrations
                 columns: new[] { "Id", "IsDefault", "Name" },
                 values: new object[,]
                 {
-                    { "en", false, "English" },
-                    { "vi", true, "Tiếng Việt" }
+                    { "vi", true, "Tiếng Việt" },
+                    { "en", false, "English" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "DateCreated", "IsFeatured", "OriginalPrice", "Price" },
-                values: new object[] { 1, new DateTime(2020, 12, 16, 1, 50, 37, 128, DateTimeKind.Local).AddTicks(9357), null, 100000m, 200000m });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "efc77f96-92ba-4e28-94d0-3680ed3aabe2", "Administrator role", "admin", "admin" });
+                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "f16924e4-079d-4ed1-aa60-ed59877a07c5", "Administrator role", "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "Slides",
@@ -840,31 +844,37 @@ namespace MinhDucEvent.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "9985ae6d-8a71-4442-ab79-6b096e81c9ab", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "tedu.international@gmail.com", true, "Toan", "Bach", false, null, "tedu.international@gmail.com", "admin", "AQAAAAEAACcQAAAAEGz+ZyEdI4Muw2PCcjHna5LOodbmMGFk7VpOqq1ukPQ1hipKR7CR6tdV5GTyBVjNng==", null, false, "", false, "admin" });
+                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "43198de5-cf6f-4540-a60c-1e23db781e18", new DateTime(1998, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "tedu.international@gmail.com", true, "Duc", "Nguyen Minh", false, null, "tedu.international@gmail.com", "admin", "AQAAAAEAACcQAAAAENRgf0prqVyoRTPRjGl9wmtnIccRwD0EP86eDElIE/RPV6SVuKZGgqSOnEOs26Gz0w==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
-                table: "CategoryTranslations",
-                columns: new[] { "Id", "CategoryId", "LanguageId", "Name", "SeoAlias", "SeoDescription", "SeoTitle" },
+                table: "EquipmentCategoryTranslations",
+                columns: new[] { "Id", "EquipmentCategoryId", "LanguageId", "Name", "SeoAlias", "SeoDescription", "SeoTitle" },
                 values: new object[,]
                 {
-                    { 1, 1, "vi", "Áo nam", "ao-nam", "Sản phẩm áo thời trang nam", "Sản phẩm áo thời trang nam" },
-                    { 3, 2, "vi", "Áo nữ", "ao-nu", "Sản phẩm áo thời trang nữ", "Sản phẩm áo thời trang women" },
-                    { 2, 1, "en", "Men Shirt", "men-shirt", "The shirt products for men", "The shirt products for men" },
-                    { 4, 2, "en", "Women Shirt", "women-shirt", "The shirt products for women", "The shirt products for women" }
+                    { 1, 1, "vi", "Loa", "ao-nam", "Sản phẩm áo thời trang nam", "Sản phẩm áo thời trang nam" },
+                    { 3, 2, "vi", "Den", "ao-nu", "Sản phẩm áo thời trang nữ", "Sản phẩm áo thời trang women" },
+                    { 2, 1, "en", "Speaker", "men-shirt", "The shirt products for men", "The shirt products for men" },
+                    { 4, 2, "en", "Light", "women-shirt", "The shirt products for women", "The shirt products for women" }
                 });
 
             migrationBuilder.InsertData(
-                table: "ProductInCategories",
-                columns: new[] { "CategoryId", "ProductId" },
-                values: new object[] { 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "ProductTranslations",
-                columns: new[] { "Id", "Description", "Details", "LanguageId", "Name", "ProductId", "SeoAlias", "SeoDescription", "SeoTitle" },
+                table: "EquipmentInCategories",
+                columns: new[] { "EquipmentCategoryId", "EquipmentId" },
                 values: new object[,]
                 {
-                    { 1, "Áo sơ mi nam trắng Việt Tiến", "Áo sơ mi nam trắng Việt Tiến", "vi", "Áo sơ mi nam trắng Việt Tiến", 1, "ao-so-mi-nam-trang-viet-tien", "Áo sơ mi nam trắng Việt Tiến", "Áo sơ mi nam trắng Việt Tiến" },
-                    { 2, "Viet Tien Men T-Shirt", "Viet Tien Men T-Shirt", "en", "Viet Tien Men T-Shirt", 1, "viet-tien-men-t-shirt", "Viet Tien Men T-Shirt", "Viet Tien Men T-Shirt" }
+                    { 1, 1 },
+                    { 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EquipmentTranslations",
+                columns: new[] { "Id", "Description", "Details", "EquipmentId", "LanguageId", "Name", "SeoAlias", "SeoDescription", "SeoTitle" },
+                values: new object[,]
+                {
+                    { 1, "Loa", "Loa", 1, "vi", "Loa", "Loa", "Loa", "Loa" },
+                    { 3, "Den", "Den", 2, "vi", "Den", "Den", "Den", "Den" },
+                    { 2, "Speaker", "Speaker", 1, "en", "Speaker", "Speaker", "Speaker", "Speaker" },
+                    { 4, "Lighting", "Lighting", 2, "en", "Lighting", "Lighting", "Lighting", "Lighting" }
                 });
 
             migrationBuilder.CreateIndex(

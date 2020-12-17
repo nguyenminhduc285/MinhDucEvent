@@ -56,8 +56,6 @@ namespace MinhDucEvent.ApiIntegration
                 requestContent.Add(bytes, "thumbnailImage", request.ThumbnailImage.FileName);
             }
 
-            requestContent.Add(new StringContent(request.Price.ToString()), "price");
-            requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "originalPrice");
             requestContent.Add(new StringContent(request.Stock.ToString()), "stock");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
@@ -118,7 +116,7 @@ namespace MinhDucEvent.ApiIntegration
             var data = await GetAsync<PagedResult<EquipmentVm>>(
                 $"/api/equipments/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
-                $"&keyword={request.Keyword}&languageId={request.LanguageId}&categoryId={request.EquipmentCategoryId}");
+                $"&keyword={request.Keyword}&languageId={request.LanguageId}&equipmentcategoryId={request.EquipmentCategoryId}");
 
             return data;
         }
@@ -152,11 +150,6 @@ namespace MinhDucEvent.ApiIntegration
         public async Task<bool> DeleteEquipment(int id)
         {
             return await Delete($"/api/equipments/" + id);
-        }
-
-        public Task GetAll(string languageId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

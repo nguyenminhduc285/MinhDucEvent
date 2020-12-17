@@ -14,7 +14,7 @@ namespace MinhDucEvent.Data.Configurations
             builder.ToTable("Equipments");
 
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Image).IsRequired().HasMaxLength(200);
+            builder.Property(x => x.Image).HasMaxLength(200);
         }
     }
 }

@@ -10,7 +10,7 @@ using MinhDucEvent.Data.EF;
 namespace MinhDucEvent.Data.Migrations
 {
     [DbContext(typeof(MinhDucEventDbContext))]
-    [Migration("20201215185038_initial")]
+    [Migration("20201217192227_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,12 +156,10 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Details")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -176,12 +174,10 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Metatitle")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -211,17 +207,17 @@ namespace MinhDucEvent.Data.Migrations
                         new
                         {
                             Key = "HomeTitle",
-                            Value = "This is home page of eShopSolution"
+                            Value = "This is home page of MinhDucEvent"
                         },
                         new
                         {
                             Key = "HomeKeyword",
-                            Value = "This is keyword of eShopSolution"
+                            Value = "This is keyword of MinhDucEvent"
                         },
                         new
                         {
                             Key = "HomeDescription",
-                            Value = "This is description of eShopSolution"
+                            Value = "This is description of MinhDucEvent"
                         });
                 });
 
@@ -251,7 +247,7 @@ namespace MinhDucEvent.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "efc77f96-92ba-4e28-94d0-3680ed3aabe2",
+                            ConcurrencyStamp = "f16924e4-079d-4ed1-aa60-ed59877a07c5",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -324,16 +320,16 @@ namespace MinhDucEvent.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9985ae6d-8a71-4442-ab79-6b096e81c9ab",
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "43198de5-cf6f-4540-a60c-1e23db781e18",
+                            Dob = new DateTime(1998, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
-                            FirstName = "Toan",
-                            LastName = "Bach",
+                            FirstName = "Duc",
+                            LastName = "Nguyen Minh",
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGz+ZyEdI4Muw2PCcjHna5LOodbmMGFk7VpOqq1ukPQ1hipKR7CR6tdV5GTyBVjNng==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENRgf0prqVyoRTPRjGl9wmtnIccRwD0EP86eDElIE/RPV6SVuKZGgqSOnEOs26Gz0w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -399,24 +395,6 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsShowOnHome = true,
-                            SortOrder = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsShowOnHome = true,
-                            SortOrder = 2,
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.CategoryTranslation", b =>
@@ -436,12 +414,10 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("varchar(5)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("SeoAlias")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -460,48 +436,6 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("CategoryTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            LanguageId = "vi",
-                            Name = "Áo nam",
-                            SeoAlias = "ao-nam",
-                            SeoDescription = "Sản phẩm áo thời trang nam",
-                            SeoTitle = "Sản phẩm áo thời trang nam"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            LanguageId = "en",
-                            Name = "Men Shirt",
-                            SeoAlias = "men-shirt",
-                            SeoDescription = "The shirt products for men",
-                            SeoTitle = "The shirt products for men"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            LanguageId = "vi",
-                            Name = "Áo nữ",
-                            SeoAlias = "ao-nu",
-                            SeoDescription = "Sản phẩm áo thời trang nữ",
-                            SeoTitle = "Sản phẩm áo thời trang women"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 2,
-                            LanguageId = "en",
-                            Name = "Women Shirt",
-                            SeoAlias = "women-shirt",
-                            SeoDescription = "The shirt products for women",
-                            SeoTitle = "The shirt products for women"
-                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.Contact", b =>
@@ -643,7 +577,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Details")
-                        .IsRequired()
                         .HasColumnType("ntext");
 
                     b.Property<string>("LanguageId")
@@ -653,17 +586,14 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("varchar(5)");
 
                     b.Property<string>("MetaDescriptions")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("MetaKeywords")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("MetaTitle")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -692,7 +622,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -702,6 +631,20 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Equipments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2020, 12, 18, 2, 22, 26, 493, DateTimeKind.Local).AddTicks(9580),
+                            Stock = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(2020, 12, 18, 2, 22, 26, 494, DateTimeKind.Local).AddTicks(8569),
+                            Stock = 12
+                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentCategory", b =>
@@ -711,10 +654,12 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("IsShowOnHome")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsShowOnHome")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
-                    b.Property<int>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
                     b.Property<int>("SortOrder")
@@ -728,6 +673,22 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EquipmentCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsShowOnHome = true,
+                            SortOrder = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsShowOnHome = true,
+                            SortOrder = 2,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentCategoryTranslation", b =>
@@ -746,21 +707,21 @@ namespace MinhDucEvent.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(5)");
 
-                    b.Property<int>("Name")
+                    b.Property<string>("Name")
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("SeoAlias")
+                    b.Property<string>("SeoAlias")
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("SeoDescription")
+                    b.Property<string>("SeoDescription")
                         .HasMaxLength(500)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("SeoTitle")
+                    b.Property<string>("SeoTitle")
                         .HasMaxLength(200)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -769,6 +730,48 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("EquipmentCategoryTranslations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EquipmentCategoryId = 1,
+                            LanguageId = "vi",
+                            Name = "Loa",
+                            SeoAlias = "ao-nam",
+                            SeoDescription = "Sản phẩm áo thời trang nam",
+                            SeoTitle = "Sản phẩm áo thời trang nam"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EquipmentCategoryId = 1,
+                            LanguageId = "en",
+                            Name = "Speaker",
+                            SeoAlias = "men-shirt",
+                            SeoDescription = "The shirt products for men",
+                            SeoTitle = "The shirt products for men"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EquipmentCategoryId = 2,
+                            LanguageId = "vi",
+                            Name = "Den",
+                            SeoAlias = "ao-nu",
+                            SeoDescription = "Sản phẩm áo thời trang nữ",
+                            SeoTitle = "Sản phẩm áo thời trang women"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EquipmentCategoryId = 2,
+                            LanguageId = "en",
+                            Name = "Light",
+                            SeoAlias = "women-shirt",
+                            SeoDescription = "The shirt products for women",
+                            SeoTitle = "The shirt products for women"
+                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentImage", b =>
@@ -792,7 +795,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -822,6 +824,18 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("EquipmentId");
 
                     b.ToTable("EquipmentInCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            EquipmentCategoryId = 1,
+                            EquipmentId = 1
+                        },
+                        new
+                        {
+                            EquipmentCategoryId = 2,
+                            EquipmentId = 2
+                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.EquipmentTranslation", b =>
@@ -853,7 +867,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("SeoAlias")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -870,6 +883,56 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("EquipmentTranslations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Loa",
+                            Details = "Loa",
+                            EquipmentId = 1,
+                            LanguageId = "vi",
+                            Name = "Loa",
+                            SeoAlias = "Loa",
+                            SeoDescription = "Loa",
+                            SeoTitle = "Loa"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Speaker",
+                            Details = "Speaker",
+                            EquipmentId = 1,
+                            LanguageId = "en",
+                            Name = "Speaker",
+                            SeoAlias = "Speaker",
+                            SeoDescription = "Speaker",
+                            SeoTitle = "Speaker"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Den",
+                            Details = "Den",
+                            EquipmentId = 2,
+                            LanguageId = "vi",
+                            Name = "Den",
+                            SeoAlias = "Den",
+                            SeoDescription = "Den",
+                            SeoTitle = "Den"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Lighting",
+                            Details = "Lighting",
+                            EquipmentId = 2,
+                            LanguageId = "en",
+                            Name = "Lighting",
+                            SeoAlias = "Lighting",
+                            SeoDescription = "Lighting",
+                            SeoTitle = "Lighting"
+                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.Language", b =>
@@ -917,23 +980,19 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShipAddress")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ShipEmail")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("ShipName")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ShipPhoneNumber")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -998,16 +1057,6 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2020, 12, 16, 1, 50, 37, 128, DateTimeKind.Local).AddTicks(9357),
-                            OriginalPrice = 100000m,
-                            Price = 200000m,
-                            ViewCount = 0
-                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.ProductDetails", b =>
@@ -1049,7 +1098,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -1082,13 +1130,6 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductInCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            ProductId = 1
-                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.ProductTranslation", b =>
@@ -1120,7 +1161,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SeoAlias")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -1137,32 +1177,6 @@ namespace MinhDucEvent.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Áo sơ mi nam trắng Việt Tiến",
-                            Details = "Áo sơ mi nam trắng Việt Tiến",
-                            LanguageId = "vi",
-                            Name = "Áo sơ mi nam trắng Việt Tiến",
-                            ProductId = 1,
-                            SeoAlias = "ao-so-mi-nam-trang-viet-tien",
-                            SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
-                            SeoTitle = "Áo sơ mi nam trắng Việt Tiến"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Viet Tien Men T-Shirt",
-                            Details = "Viet Tien Men T-Shirt",
-                            LanguageId = "en",
-                            Name = "Viet Tien Men T-Shirt",
-                            ProductId = 1,
-                            SeoAlias = "viet-tien-men-t-shirt",
-                            SeoDescription = "Viet Tien Men T-Shirt",
-                            SeoTitle = "Viet Tien Men T-Shirt"
-                        });
                 });
 
             modelBuilder.Entity("MinhDucEvent.Data.Entities.Promotion", b =>
@@ -1213,7 +1227,6 @@ namespace MinhDucEvent.Data.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -1233,7 +1246,6 @@ namespace MinhDucEvent.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 

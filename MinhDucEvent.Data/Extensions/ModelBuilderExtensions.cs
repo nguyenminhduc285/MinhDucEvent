@@ -13,16 +13,16 @@ namespace MinhDucEvent.Data.Extensions
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppConfig>().HasData(
-               new AppConfig() { Key = "HomeTitle", Value = "This is home page of eShopSolution" },
-               new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of eShopSolution" },
-               new AppConfig() { Key = "HomeDescription", Value = "This is description of eShopSolution" }
+               new AppConfig() { Key = "HomeTitle", Value = "This is home page of MinhDucEvent" },
+               new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of MinhDucEvent" },
+               new AppConfig() { Key = "HomeDescription", Value = "This is description of MinhDucEvent" }
                );
             modelBuilder.Entity<Language>().HasData(
                 new Language() { Id = "vi", Name = "Tiếng Việt", IsDefault = true },
                 new Language() { Id = "en", Name = "English", IsDefault = false });
 
-            modelBuilder.Entity<Category>().HasData(
-                new Category()
+            modelBuilder.Entity<EquipmentCategory>().HasData(
+                new EquipmentCategory()
                 {
                     Id = 1,
                     IsShowOnHome = true,
@@ -30,7 +30,7 @@ namespace MinhDucEvent.Data.Extensions
                     SortOrder = 1,
                     Status = Status.Active,
                 },
-                 new Category()
+                 new EquipmentCategory()
                  {
                      Id = 2,
                      IsShowOnHome = true,
@@ -39,49 +39,78 @@ namespace MinhDucEvent.Data.Extensions
                      Status = Status.Active
                  });
 
-            modelBuilder.Entity<CategoryTranslation>().HasData(
-                  new CategoryTranslation() { Id = 1, CategoryId = 1, Name = "Áo nam", LanguageId = "vi", SeoAlias = "ao-nam", SeoDescription = "Sản phẩm áo thời trang nam", SeoTitle = "Sản phẩm áo thời trang nam" },
-                  new CategoryTranslation() { Id = 2, CategoryId = 1, Name = "Men Shirt", LanguageId = "en", SeoAlias = "men-shirt", SeoDescription = "The shirt products for men", SeoTitle = "The shirt products for men" },
-                  new CategoryTranslation() { Id = 3, CategoryId = 2, Name = "Áo nữ", LanguageId = "vi", SeoAlias = "ao-nu", SeoDescription = "Sản phẩm áo thời trang nữ", SeoTitle = "Sản phẩm áo thời trang women" },
-                  new CategoryTranslation() { Id = 4, CategoryId = 2, Name = "Women Shirt", LanguageId = "en", SeoAlias = "women-shirt", SeoDescription = "The shirt products for women", SeoTitle = "The shirt products for women" }
+            modelBuilder.Entity<EquipmentCategoryTranslation>().HasData(
+                  new EquipmentCategoryTranslation() { Id = 1, EquipmentCategoryId = 1, Name = "Loa", LanguageId = "vi", SeoAlias = "ao-nam", SeoDescription = "Sản phẩm áo thời trang nam", SeoTitle = "Sản phẩm áo thời trang nam" },
+                  new EquipmentCategoryTranslation() { Id = 2, EquipmentCategoryId = 1, Name = "Speaker", LanguageId = "en", SeoAlias = "men-shirt", SeoDescription = "The shirt products for men", SeoTitle = "The shirt products for men" },
+                  new EquipmentCategoryTranslation() { Id = 3, EquipmentCategoryId = 2, Name = "Den", LanguageId = "vi", SeoAlias = "ao-nu", SeoDescription = "Sản phẩm áo thời trang nữ", SeoTitle = "Sản phẩm áo thời trang women" },
+                  new EquipmentCategoryTranslation() { Id = 4, EquipmentCategoryId = 2, Name = "Light", LanguageId = "en", SeoAlias = "women-shirt", SeoDescription = "The shirt products for women", SeoTitle = "The shirt products for women" }
                     );
 
-            modelBuilder.Entity<Product>().HasData(
-           new Product()
+            modelBuilder.Entity<Equipment>().HasData(
+           new Equipment()
            {
                Id = 1,
                DateCreated = DateTime.Now,
-               OriginalPrice = 100000,
-               Price = 200000,
-               ViewCount = 0,
+               Stock = 12,
+           },
+           new Equipment()
+           {
+               Id = 2,
+               DateCreated = DateTime.Now,
+               Stock = 12,
            });
-            modelBuilder.Entity<ProductTranslation>().HasData(
-                 new ProductTranslation()
+
+            modelBuilder.Entity<EquipmentTranslation>().HasData(
+                 new EquipmentTranslation()
                  {
                      Id = 1,
-                     ProductId = 1,
-                     Name = "Áo sơ mi nam trắng Việt Tiến",
+                     EquipmentId = 1,
+                     Name = "Loa",
                      LanguageId = "vi",
-                     SeoAlias = "ao-so-mi-nam-trang-viet-tien",
-                     SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
-                     SeoTitle = "Áo sơ mi nam trắng Việt Tiến",
-                     Details = "Áo sơ mi nam trắng Việt Tiến",
-                     Description = "Áo sơ mi nam trắng Việt Tiến"
+                     SeoAlias = "Loa",
+                     SeoDescription = "Loa",
+                     SeoTitle = "Loa",
+                     Details = "Loa",
+                     Description = "Loa"
                  },
-                    new ProductTranslation()
+                    new EquipmentTranslation()
                     {
                         Id = 2,
-                        ProductId = 1,
-                        Name = "Viet Tien Men T-Shirt",
+                        EquipmentId = 1,
+                        Name = "Speaker",
                         LanguageId = "en",
-                        SeoAlias = "viet-tien-men-t-shirt",
-                        SeoDescription = "Viet Tien Men T-Shirt",
-                        SeoTitle = "Viet Tien Men T-Shirt",
-                        Details = "Viet Tien Men T-Shirt",
-                        Description = "Viet Tien Men T-Shirt"
+                        SeoAlias = "Speaker",
+                        SeoDescription = "Speaker",
+                        SeoTitle = "Speaker",
+                        Details = "Speaker",
+                        Description = "Speaker"
+                    }, new EquipmentTranslation()
+                    {
+                        Id = 3,
+                        EquipmentId = 2,
+                        Name = "Den",
+                        LanguageId = "vi",
+                        SeoAlias = "Den",
+                        SeoDescription = "Den",
+                        SeoTitle = "Den",
+                        Details = "Den",
+                        Description = "Den"
+                    }, new EquipmentTranslation()
+                    {
+                        Id = 4,
+                        EquipmentId = 2,
+                        Name = "Lighting",
+                        LanguageId = "en",
+                        SeoAlias = "Lighting",
+                        SeoDescription = "Lighting",
+                        SeoTitle = "Lighting",
+                        Details = "Lighting",
+                        Description = "Lighting"
                     });
-            modelBuilder.Entity<ProductInCategory>().HasData(
-                new ProductInCategory() { ProductId = 1, CategoryId = 1 }
+
+            modelBuilder.Entity<EquipmentInCategory>().HasData(
+                new EquipmentInCategory() { EquipmentId = 1, EquipmentCategoryId = 1 },
+                new EquipmentInCategory() { EquipmentId = 2, EquipmentCategoryId = 2 }
                 );
 
             // any guid
@@ -106,9 +135,9 @@ namespace MinhDucEvent.Data.Extensions
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Abcd1234$"),
                 SecurityStamp = string.Empty,
-                FirstName = "Toan",
-                LastName = "Bach",
-                Dob = new DateTime(2020, 01, 31)
+                FirstName = "Duc",
+                LastName = "Nguyen Minh",
+                Dob = new DateTime(1998, 05, 28)
             });
 
             modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
