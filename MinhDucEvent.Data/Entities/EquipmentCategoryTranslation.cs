@@ -8,10 +8,10 @@ namespace MinhDucEvent.Data.Entities
     {
         public int Id { get; set; }
         public int EquipmentCategoryId { get; set; }
-        public int Name { get; set; }
-        public int SeoDescription { get; set; }
-        public int SeoTitle { get; set; }
-        public int SeoAlias { get; set; }
+        public string Name { get; set; }
+        public string SeoDescription { get; set; }
+        public string SeoTitle { get; set; }
+        public string SeoAlias { get; set; }
         public string LanguageId { get; set; }
         public EquipmentCategory EquipmentCategory { get; set; }
 

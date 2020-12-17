@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.Data.Configurations
+namespace MinhDucEvent.Data.Configurations
 {
     internal class ProductInCategoryConfiguration : IEntityTypeConfiguration<ProductInCategory>
     {

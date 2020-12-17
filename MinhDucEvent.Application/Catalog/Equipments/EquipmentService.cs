@@ -49,6 +49,35 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             return equipmentImage.Id;
         }
 
+        public async Task<ApiResult<bool>> CategoryAssign(int id, EquipmentCategoryAssignRequest request)
+        {
+            var user = await _context.Equipments.FindAsync(id);
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>($"Thiet bi với id {id} không tồn tại");
+            }
+            foreach (var category in request.Categories)
+            {
+                var equipmentInCategory = await _context.EquipmentInCategories
+                    .FirstOrDefaultAsync(x => x.EquipmentCategoryId == int.Parse(category.Id)
+                    && x.EquipmentId == id);
+                if (equipmentInCategory != null && category.Selected == false)
+                {
+                    _context.EquipmentInCategories.Remove(equipmentInCategory);
+                }
+                else if (equipmentInCategory == null && category.Selected)
+                {
+                    await _context.EquipmentInCategories.AddAsync(new EquipmentInCategory()
+                    {
+                        EquipmentCategoryId = int.Parse(category.Id),
+                        EquipmentId = id
+                    });
+                }
+            }
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
+        }
+
         public async Task<int> Create(EquipmentCreateRequest request)
         {
             var languages = _context.Languages;
@@ -139,9 +168,9 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
 
-            if (request.CategoryId != null && request.CategoryId != 0)
+            if (request.EquipmentCategoryId != null && request.EquipmentCategoryId != 0)
             {
-                query = query.Where(p => p.pic.EquipmentCategoryId == request.CategoryId);
+                query = query.Where(p => p.pic.EquipmentCategoryId == request.EquipmentCategoryId);
             }
 
             //3. Paging

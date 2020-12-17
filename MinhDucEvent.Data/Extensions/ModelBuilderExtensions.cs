@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.Data.Extensions
+namespace MinhDucEvent.Data.Extensions
 {
     public static class ModelBuilderExtensions
     {

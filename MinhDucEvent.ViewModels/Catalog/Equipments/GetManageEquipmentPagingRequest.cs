@@ -8,6 +8,6 @@ namespace MinhDucEvent.ViewModels.Catalog.Equipments
 
         public string LanguageId { get; set; }
 
-        public int? CategoryId { get; set; }
+        public int? EquipmentCategoryId { get; set; }
     }
 }

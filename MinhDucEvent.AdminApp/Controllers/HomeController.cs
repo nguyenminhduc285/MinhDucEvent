@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MinhDucEvent.AdminApp.Models;
-using System;
-using System.Collections.Generic;
+using MinhDucEvent.Utilities.Constants;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MinhDucEvent.AdminApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -20,6 +18,7 @@ namespace MinhDucEvent.AdminApp.Controllers
 
         public IActionResult Index()
         {
+            var user = User.Identity.Name;
             return View();
         }
 
@@ -32,6 +31,15 @@ namespace MinhDucEvent.AdminApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult Language(NavigationViewModel viewModel)
+        {
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId,
+                viewModel.CurrentLanguageId);
+
+            return Redirect(viewModel.ReturnUrl);
         }
     }
 }

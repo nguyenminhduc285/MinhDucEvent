@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MinhDucEvent.Application.Catalog.Equipments;
 using MinhDucEvent.Application.Common;
+using MinhDucEvent.Application.System.Languages;
 using MinhDucEvent.Application.System.Roles;
 using MinhDucEvent.Application.System.Users;
 using MinhDucEvent.Data.EF;
@@ -47,6 +48,7 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
+            services.AddTransient<ILanguageService, LanguageService>();
 
             //config validator
             services.AddControllers()

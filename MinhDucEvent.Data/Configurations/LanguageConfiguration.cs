@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.Data.Configurations
+namespace MinhDucEvent.Data.Configurations
 {
     public class LanguageConfiguration : IEntityTypeConfiguration<Language>
     {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MinhDucEvent.Data.Entities;
 
-namespace eShopSolution.Data.Configurations
+namespace MinhDucEvent.Data.Configurations
 {
     public class EquipmentImageConfiguration : IEntityTypeConfiguration<EquipmentImage>
     {

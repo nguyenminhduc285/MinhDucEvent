@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MinhDucEvent.Data.Entities;
 using MinhDucEvent.Data.Enums;
 
-namespace eShopSolution.Data.Configurations
+namespace MinhDucEvent.Data.Configurations
 {
     public class AboutConfiguration : IEntityTypeConfiguration<About>
     {

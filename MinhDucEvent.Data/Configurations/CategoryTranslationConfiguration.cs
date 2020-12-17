@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace eShopSolution.Data.Configurations
+namespace MinhDucEvent.Data.Configurations
 {
     public class CategoryTranslationConfiguration : IEntityTypeConfiguration<CategoryTranslation>
     {

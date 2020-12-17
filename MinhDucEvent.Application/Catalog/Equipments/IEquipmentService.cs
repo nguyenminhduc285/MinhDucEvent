@@ -29,5 +29,7 @@ namespace MinhDucEvent.Application.Catalog.Equipments
         Task<EquipmentImageViewModel> GetImageById(int imageId);
 
         Task<List<EquipmentImageViewModel>> GetListImages(int equipmentId);
+
+        Task<ApiResult<bool>> CategoryAssign(int id, EquipmentCategoryAssignRequest request);
     }
 }

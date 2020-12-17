@@ -1,5 +1,5 @@
-﻿using eShopSolution.Data.Configurations;
-using eShopSolution.Data.Extensions;
+﻿using MinhDucEvent.Data.Configurations;
+using MinhDucEvent.Data.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
