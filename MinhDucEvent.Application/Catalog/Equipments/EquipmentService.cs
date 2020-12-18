@@ -216,8 +216,8 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             var EquipmentTranslation = await _context.EquipmentTranslations.FirstOrDefaultAsync(x => x.EquipmentId == equipmentId
             && x.LanguageId == languageId);
 
-            var categories = await (from c in _context.Categories
-                                    join ct in _context.CategoryTranslations on c.Id equals ct.CategoryId
+            var categories = await (from c in _context.EquipmentCategories
+                                    join ct in _context.EquipmentCategoryTranslations on c.Id equals ct.EquipmentCategoryId
                                     join pic in _context.EquipmentInCategories on c.Id equals pic.EquipmentCategoryId
                                     where pic.EquipmentId == equipmentId && ct.LanguageId == languageId
                                     select ct.Name).ToListAsync();

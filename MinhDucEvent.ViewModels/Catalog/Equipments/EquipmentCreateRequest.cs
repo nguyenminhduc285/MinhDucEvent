@@ -8,8 +8,6 @@ namespace MinhDucEvent.ViewModels.Catalog.Equipments
 {
     public class EquipmentCreateRequest
     {
-        public decimal Price { set; get; }
-        public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
 
         [Required(ErrorMessage = "Bạn phải nhập tên sản phẩm")]
