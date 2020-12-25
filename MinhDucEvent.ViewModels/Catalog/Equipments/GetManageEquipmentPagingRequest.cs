@@ -2,7 +2,7 @@
 
 namespace MinhDucEvent.ViewModels.Catalog.Equipments
 {
-    public class GetManageEquipmentPagingRequest : PagingRequestBase
+    public class GetManageEquipmentsPagingRequest : PagingRequestBase
     {
         public string Keyword { get; set; }
 

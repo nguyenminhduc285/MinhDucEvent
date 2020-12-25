@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MinhDucEvent.BackendApi.Controllers
 {
-    //api/products
+    //api/equipments
     [Route("api/[controller]")]
     [ApiController]
     public class EquipmentsController : ControllerBase
@@ -22,7 +22,7 @@ namespace MinhDucEvent.BackendApi.Controllers
         }
 
         [HttpGet("paging")]
-        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageEquipmentPagingRequest request)
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageEquipmentsPagingRequest request)
         {
             var equipments = await _equipmentService.GetAllPaging(request);
             return Ok(equipments);

@@ -1,3 +1,4 @@
+using MinhDucEvent.Application.Catalog.Categories;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MinhDucEvent.Application.Catalog.Categories;
 using MinhDucEvent.Application.Catalog.Equipments;
+using MinhDucEvent.Application.Catalog.Products;
 using MinhDucEvent.Application.Common;
 using MinhDucEvent.Application.System.Languages;
 using MinhDucEvent.Application.System.Roles;
@@ -49,6 +51,8 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
 

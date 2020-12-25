@@ -151,7 +151,7 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<EquipmentVm>> GetAllPaging(GetManageEquipmentPagingRequest request)
+        public async Task<PagedResult<EquipmentVm>> GetAllPaging(GetManageEquipmentsPagingRequest request)
         {
             //1. Select join
             var query = from e in _context.Equipments

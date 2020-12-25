@@ -18,7 +18,7 @@ namespace MinhDucEvent.Application.Catalog.Equipments
 
         Task<bool> UpdateStock(int equipmentId, int addedQuantity);
 
-        Task<PagedResult<EquipmentVm>> GetAllPaging(GetManageEquipmentPagingRequest request);
+        Task<PagedResult<EquipmentVm>> GetAllPaging(GetManageEquipmentsPagingRequest request);
 
         Task<int> AddImage(int equipmentId, EquipmentImageCreateRequest request);
 

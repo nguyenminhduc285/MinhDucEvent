@@ -9,7 +9,7 @@ namespace MinhDucEvent.ApiIntegration
 {
     public interface IEquipmentApiClient
     {
-        Task<PagedResult<EquipmentVm>> GetPagings(GetManageEquipmentPagingRequest request);
+        Task<PagedResult<EquipmentVm>> GetPagings(GetManageEquipmentsPagingRequest request);
 
         Task<bool> CreateEquipment(EquipmentCreateRequest request);
 

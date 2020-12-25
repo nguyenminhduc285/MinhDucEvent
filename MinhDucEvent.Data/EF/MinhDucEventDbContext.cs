@@ -87,7 +87,8 @@ namespace MinhDucEvent.Data.EF
         // base.OnModelCreating(modelBuilder);
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Product> ProductDetails { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<AboutTranslation> AboutTranslations { get; set; }
         public DbSet<Content> Contents { get; set; }
@@ -101,7 +102,7 @@ namespace MinhDucEvent.Data.EF
         public DbSet<EquipmentCategoryTranslation> EquipmentCategoryTranslations { get; set; }
         public DbSet<EquipmentInCategory> EquipmentInCategories { get; set; }
         public DbSet<EquipmentTranslation> EquipmentTranslations { get; set; }
-        public DbSet<EquipmentCategory> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }

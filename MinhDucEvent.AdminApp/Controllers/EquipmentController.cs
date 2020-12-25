@@ -34,7 +34,7 @@ namespace MinhDucEvent.AdminApp.Controllers
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
-            var request = new GetManageEquipmentPagingRequest()
+            var request = new GetManageEquipmentsPagingRequest()
             {
                 Keyword = keyword,
                 PageIndex = pageIndex,

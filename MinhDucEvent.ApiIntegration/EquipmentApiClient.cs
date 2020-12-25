@@ -111,7 +111,7 @@ namespace MinhDucEvent.ApiIntegration
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<PagedResult<EquipmentVm>> GetPagings(GetManageEquipmentPagingRequest request)
+        public async Task<PagedResult<EquipmentVm>> GetPagings(GetManageEquipmentsPagingRequest request)
         {
             var data = await GetAsync<PagedResult<EquipmentVm>>(
                 $"/api/equipments/paging?pageIndex={request.PageIndex}" +
