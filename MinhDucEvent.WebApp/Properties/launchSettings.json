@@ -18,7 +18,7 @@
     "MinhDucEvent.WebApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "",
+      "applicationUrl": "https://localhost:5012",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

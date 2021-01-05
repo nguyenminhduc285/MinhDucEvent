@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MinhDucEvent.Utilities.Constants
+﻿namespace MinhDucEvent.Utilities.Constants
 {
     public class SystemConstants
     {

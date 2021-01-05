@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Utilities\" />
-  </ItemGroup>
-
 </Project>

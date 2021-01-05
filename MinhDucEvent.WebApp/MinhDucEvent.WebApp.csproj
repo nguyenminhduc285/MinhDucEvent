@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MinhDucEvent.Utilities\MinhDucEvent.Utilities.csproj" />
     <ProjectReference Include="..\MinhDucEvent.ViewModels\MinhDucEvent.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\themes\less\oregional\" />
+  </ItemGroup>
 </Project>

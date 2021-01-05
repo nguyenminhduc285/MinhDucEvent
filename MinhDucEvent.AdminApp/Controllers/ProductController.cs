@@ -97,12 +97,5 @@ namespace MinhDucEvent.AdminApp.Controllers
             ModelState.AddModelError("", "Thêm sản phẩm thất bại");
             return View(request);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> AddProductDetails(int equipmentId)
-        {
-            var leq = new List<ProductDetailVM>();
-            return ();
-        }
     }
 }

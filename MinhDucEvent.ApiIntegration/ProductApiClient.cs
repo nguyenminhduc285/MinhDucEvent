@@ -30,6 +30,11 @@ namespace MinhDucEvent.ApiIntegration
             _httpClientFactory = httpClientFactory;
         }
 
+        public Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> CreateProduct(ProductCreateRequest request)
         {
             var sessions = _httpContextAccessor
@@ -72,14 +77,27 @@ namespace MinhDucEvent.ApiIntegration
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> DeleteProduct(int id)
+        public async Task<bool> DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            return await Delete($"/api/products/" + id);
         }
 
-        public Task<ProductVm> GetById(int id, string languageId)
+        public async Task<ProductVm> GetById(int id, string languageId)
         {
-            throw new NotImplementedException();
+            var data = await GetAsync<ProductVm>($"/api/products/{id}/{languageId}");
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/featured/{languageId}/{take}");
+            return data;
+        }
+
+        public async Task<List<ProductVm>> GetLatestProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/latest/{languageId}/{take}");
+            return data;
         }
 
         public async Task<PagedResult<ProductVm>> GetPagings(GetManageProductPagingRequest request)

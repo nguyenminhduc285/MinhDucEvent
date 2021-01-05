@@ -10,7 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using MinhDucEvent.Application.Catalog.Categories;
+
 using MinhDucEvent.Application.Catalog.Equipments;
 using MinhDucEvent.Application.Catalog.Products;
 using MinhDucEvent.Application.Common;
@@ -22,6 +24,7 @@ using MinhDucEvent.Data.Entities;
 using MinhDucEvent.Utilities.Constants;
 using MinhDucEvent.ViewModels.System.Users;
 using System.Collections.Generic;
+using MinhDucEvent.Application.Utilities.Slides;
 
 namespace MinhDucEvent.BackendApi
 {
@@ -55,6 +58,7 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<ISlideService, SlideService>();
 
             //config validator
             services.AddControllers()
