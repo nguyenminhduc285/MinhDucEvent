@@ -97,5 +97,56 @@ namespace MinhDucEvent.AdminApp.Controllers
             ModelState.AddModelError("", "Thêm sản phẩm thất bại");
             return View(request);
         }
+        [HttpGet, ActionName("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _productApiClient.DeleteProduct(id);
+            if (result)
+            {
+                TempData["result"] = "Xóa sản phẩm thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Xóa sản phẩm thất bại");
+            return  View("~/Views/Product/Index.cshtml");
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+         
+            var product = _productApiClient.GetById(id,languageId).Result;
+            var resultProduction = new ProductEdit()
+            {
+                Name = product.Name,
+                Price = product.Price,
+                OriginalPrice = product.OriginalPrice,
+                Description = product.Description,
+                Details= product.Details,
+                SeoDescription=product.SeoDescription,
+                SeoTitle = product.SeoTitle,
+                SeoAlias=product.SeoAlias,
+                ThumbnailImage=product.ThumbnailImage
+            };
+         
+            return View(resultProduction);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromForm] ProductUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View("~/Views/Product/Index.cshtml");
+
+            var result = await _productApiClient.UpdateProduct(request);
+            if (result)
+            {
+                TempData["result"] = "Cập nhật người dùng thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Fail Update");
+            return  View("~/Views/Product/Index.cshtml");
+        }
     }
 }
