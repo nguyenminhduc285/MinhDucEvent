@@ -74,10 +74,11 @@ namespace MinhDucEvent.AdminApp.Controllers
                 Keyword = null,
                 LanguageId = languageId,
                 PageIndex = 1,
-                PageSize = 10
-            });
-            ViewBag.ProductDetails = leq.Result;
-            return View();
+                PageSize = 80
+            }); 
+            var obj = new ProductCreateRequest();
+              obj.eqm = leq.Result.Items.FindAll(s=> s.Id > 0);
+              return View(obj);
         }
 
         [HttpPost]
@@ -114,7 +115,16 @@ namespace MinhDucEvent.AdminApp.Controllers
         public IActionResult Edit(int id)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
-         
+
+            var leq = _equipmentApiClient.GetPagings(new GetManageEquipmentsPagingRequest()
+            {
+                EquipmentCategoryId = null,
+                Keyword = null,
+                LanguageId = languageId,
+                PageIndex = 1,
+                PageSize = 80
+            }); 
+            
             var product = _productApiClient.GetById(id,languageId).Result;
             var resultProduction = new ProductEdit()
             {
@@ -126,7 +136,8 @@ namespace MinhDucEvent.AdminApp.Controllers
                 SeoDescription=product.SeoDescription,
                 SeoTitle = product.SeoTitle,
                 SeoAlias=product.SeoAlias,
-                ThumbnailImage=product.ThumbnailImage
+                ThumbnailImage=product.ThumbnailImage,
+                eqm = leq.Result.Items
             };
          
             return View(resultProduction);
@@ -147,6 +158,36 @@ namespace MinhDucEvent.AdminApp.Controllers
 
             ModelState.AddModelError("", "Fail Update");
             return  View("~/Views/Product/Index.cshtml");
+        }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+            var leq = _equipmentApiClient.GetPagings(new GetManageEquipmentsPagingRequest()
+            {
+                EquipmentCategoryId = null,
+                Keyword = null,
+                LanguageId = languageId,
+                PageIndex = 1,
+                PageSize = 80
+            }); 
+            var product = _productApiClient.GetById(id,languageId).Result;
+            var resultProduction = new ProductEdit()
+            {
+                Name = product.Name,
+                Price = product.Price,
+                OriginalPrice = product.OriginalPrice,
+                Description = product.Description,
+                Details= product.Details,
+                SeoDescription=product.SeoDescription,
+                SeoTitle = product.SeoTitle,
+                SeoAlias=product.SeoAlias,
+                ThumbnailImage=product.ThumbnailImage,
+                eqm = leq.Result.Items
+            };
+         
+            return View(resultProduction);
         }
     }
 }

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using MinhDucEvent.ViewModels.Catalog.Equipments;
+
 namespace MinhDucEvent.ViewModels.Catalog.Products
 {
     public class ProductEdit
@@ -18,5 +21,7 @@ namespace MinhDucEvent.ViewModels.Catalog.Products
         public string LanguageId { set; get; }
         public bool? IsFeatured { get; set; }
         public string ThumbnailImage { get; set; }
+        
+        public List<EquipmentVm> eqm { get; set; } = new List<EquipmentVm>();
     }
 }

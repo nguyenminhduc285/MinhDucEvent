@@ -13,11 +13,15 @@ namespace MinhDucEvent.ViewModels.Catalog.Equipments
         public string Details { set; get; }
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
-
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
         public bool? IsFeatured { get; set; }
         public string ThumbnailImage { get; set; }
         public List<string> EquipmentCategories { get; set; } = new List<string>();
     }
+
+    public class ListEq
+    {
+        public List<EquipmentVm> ListEquiments { get; set; }
+    } 
 }

@@ -149,7 +149,7 @@ namespace MinhDucEvent.ApiIntegration
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
             requestContent.Add(new StringContent(languageId), "languageId");
 
-
+            
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
             var result =  response.IsSuccessStatusCode;
             return result;
