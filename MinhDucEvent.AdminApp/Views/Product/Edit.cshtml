@@ -18,6 +18,18 @@
             .catch(err => {
                 console.error(err.stack);
             });
+        
+        $(document).ready(function (){
+            $("#btnEdit").click(function (){
+                AddRecords();
+            });    
+        });
+        
+        function AddRecords(){
+            var listEqm = "<tr><td>" + $("#Id").val() + "</td>" + "<td>" + $("#Name").val() + "</td>" +  "<td>" + $("#EquipmentCategories").val() + "</td>" +  "<td>" + $("#Stock").val() +"</td></tr>"
+            $("#tableEqm").last().append(listEqm);
+            console.log("list eqm = ", listEqm)
+        }
     </script>
 }
 <div class="container-fluid">
@@ -85,64 +97,66 @@
                         <input asp-for="ThumbnailImage" type="file" class="form-control" />
                         <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                     </div>
-                    
 
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="tableEqm">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Mã Thiet Bi
+                                </th>
+                                <th>
+                                    Tên
+                                </th>
+                                <th>
+                                    Loai
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody class="form-group" asp-for="eqm">
+                            @* @for(int i = 0; i < Model.eqm.Count(); i++) *@
+                            @foreach(var item in Model.eqm)
+                            {
+                                        
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                        @* $1$ <input asp-for="EquipmentVm[0]." type="file" class="form-control" value="@Html.DisplayFor(modelItem => item.Id)" /> #1# *@
+                                        @* @Html.TextAreaFor(modelItem => item.Id) *@
+                                        @* @Html.TextBoxFor( s=> s.eqm[i].Id,new {@class="form-group"}) *@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                        @* @Html.TextBoxFor(s => s.eqm[i].Name,new {@class="form-group"}) *@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EquipmentCategories)
+                                        @* @Html.TextBoxFor( s => s.eqm[i].EquipmentCategories, new {@class="form-group"}) *@
+                                    </td>
+    
+                                    <td>
+                                        @Html.TextBoxFor(modelItem => item.Stock)
+                                        @* @Html.TextBoxFor(s => s.eqm[i].Stock, new{@class="form-group"}) *@
+                                    </td>
+                                    <td>
+                                        <a>Them </a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="form-group">
-                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
+                        <input type="submit" value="Sửa" class="btn btn-primary" id="btnEdit1" />
                     </div>
                     
-                     <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            Mã Thiet Bi
-                                                        </th>
-                                                        <th>
-                                                            Tên
-                                                        </th>
-                                                        <th>
-                                                            Loai
-                                                        </th>
-                                                        <th>
-                                                            Số lượng
-                                                        </th>
-                                                        <th>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="form-group" asp-for="eqm">
-                                                    @* @for(int i = 0; i < Model.eqm.Count(); i++) *@
-                                                @foreach(var item in Model.eqm)
-                                                    {
-                                                        
-                                                        <tr>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.Id)
-                                                                @* $1$ <input asp-for="EquipmentVm[0]." type="file" class="form-control" value="@Html.DisplayFor(modelItem => item.Id)" /> #1# *@
-                                                                @* @Html.TextAreaFor(modelItem => item.Id) *@
-                                                                @* @Html.TextBoxFor( s=> s.eqm[i].Id,new {@class="form-group"}) *@
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.Name)
-                                                                 @* @Html.TextBoxFor(s => s.eqm[i].Name,new {@class="form-group"}) *@
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(modelItem => item.EquipmentCategories)
-                                                                @* @Html.TextBoxFor( s => s.eqm[i].EquipmentCategories, new {@class="form-group"}) *@
-                                                            </td>
-                    
-                                                            <td>
-                                                               @Html.TextBoxFor(modelItem => item.Stock)
-                                                                @* @Html.TextBoxFor(s => s.eqm[i].Stock, new{@class="form-group"}) *@
-                                                            </td>
-                                                            <td>
-                                                                <a>Them </a>
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
+                     <div class="form-group">
+                                            <input type="button" value="test" class="btn btn-primary" id="btnEdit" />
                                         </div>
                 </form>
             </div>
