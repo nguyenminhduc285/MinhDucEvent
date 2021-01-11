@@ -176,6 +176,15 @@ namespace MinhDucEvent.AdminApp.Controllers
             });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var result = await _equipmentApiClient.GetById(id, languageId);
+            return View(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(EquipmentDeleteRequest request)
         {
