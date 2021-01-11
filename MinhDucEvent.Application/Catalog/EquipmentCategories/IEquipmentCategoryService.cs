@@ -9,5 +9,7 @@ namespace MinhDucEvent.Application.Catalog.Categories
         Task<List<EquipmentCategoryVm>> GetAll(string languageId);
 
         Task<EquipmentCategoryVm> GetById(string languageId, int id);
+
+        Task<int> Create(EquipmentCategoryCreateRequest request);
     }
 }
