@@ -12,5 +12,13 @@ namespace MinhDucEvent.ApiIntegration
         Task<List<EquipmentCategoryVm>> GetAll(string languageId);
 
         Task<EquipmentCategoryVm> GetById(string languageId, int id);
+
+        Task<bool> CreateEquipmentCategory(EquipmentCategoryCreateRequest request);
+
+        Task<bool> UpdateEquipmentCategory(EquipmentCategoryUpdateRequest request);
+
+        Task<bool> DeleteEquipmentCategory(int id);
+
+        Task<PagedResult<EquipmentCategoryVm>> GetPagings(GetManageEqCaPagingRequest request);
     }
 }

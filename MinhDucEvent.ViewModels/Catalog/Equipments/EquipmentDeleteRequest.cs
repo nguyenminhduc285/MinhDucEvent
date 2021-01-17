@@ -1,4 +1,4 @@
-﻿namespace MinhDucEvent.ViewModels.System.Equipments
+﻿namespace MinhDucEvent.ViewModels.Catalog.Equipments
 {
     public class EquipmentDeleteRequest
     {
