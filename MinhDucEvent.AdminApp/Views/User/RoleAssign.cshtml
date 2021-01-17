@@ -16,7 +16,7 @@
         </div>
 
         <div class="card-body">
-            <form asp-action="EquipmentCategoryAssign">
+            <form asp-action="RoleAssign">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 @for (var i = 0; i < Model.Roles.Count; i++)

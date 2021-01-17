@@ -124,7 +124,7 @@ namespace MinhDucEvent.AdminApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(EquipmentCategoryDeleteRequest request)
+        public async Task<IActionResult> Delete(CategoryDeleteRequest request)
         {
             if (!ModelState.IsValid)
                 return View();
