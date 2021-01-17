@@ -56,7 +56,6 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<ISlideService, SlideService>();
-            services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
 
             //config validator
             services.AddControllers()
