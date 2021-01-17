@@ -17,12 +17,10 @@ namespace MinhDucEvent.Application.Catalog.Categories
     public class CategoryService : ICategoryService
     {
         private readonly MinhDucEventDbContext _context;
-        private readonly IStorageService _storageService;
 
-        public CategoryService(MinhDucEventDbContext context, IStorageService storageService)
+        public CategoryService(MinhDucEventDbContext context)
         {
             _context = context;
-            _storageService = storageService;
         }
 
         public async Task<int> Create(CategoryCreateRequest request)
