@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using MinhDucEvent.Application.Catalog.Categories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MinhDucEvent.ViewModels.Catalog.EquipmentCategories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MinhDucEvent.BackendApi.Controllers
 {
@@ -32,6 +34,55 @@ namespace MinhDucEvent.BackendApi.Controllers
         {
             var equipmentCategory = await _equipmentCategoryService.GetById(languageId, id);
             return Ok(equipmentCategory);
+        }
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetManageEqCaPagingRequest request)
+        {
+            var eqcas = await _equipmentCategoryService.GetAllPaging(request);
+            return Ok(eqcas);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create([FromForm] EquipmentCategoryCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var eqcaId = await _equipmentCategoryService.Create(request);
+            if (eqcaId == 0)
+            {
+                return BadRequest();
+            }
+            var Eqca = await _equipmentCategoryService.GetById(request.LanguageId, eqcaId);
+            return CreatedAtAction(nameof(GetById), new { id = eqcaId }, Eqca);
+        }
+
+        [HttpPut("{eqcaId}")]
+        [Authorize]
+        public async Task<IActionResult> Update([FromRoute] int eqcaId, [FromForm] EquipmentCategoryUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            request.Id = eqcaId;
+            var affectedResult = await _equipmentCategoryService.Update(request);
+            if (affectedResult == 0)
+                return BadRequest();
+            return Ok();
+        }
+
+        [HttpDelete("{eqcaId}")]
+        [Authorize]
+        public async Task<IActionResult> Delete([FromRoute] int eqcaId)
+        {
+            var affectedResult = await _equipmentCategoryService.Delete(eqcaId);
+            if (affectedResult == 0)
+                return BadRequest();
+            return Ok();
         }
     }
 }

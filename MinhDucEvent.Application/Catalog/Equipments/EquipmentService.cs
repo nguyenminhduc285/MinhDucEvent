@@ -293,7 +293,8 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             var EquipmentTranslations = await _context.EquipmentTranslations.FirstOrDefaultAsync(x => x.EquipmentId == request.Id
             && x.LanguageId == request.LanguageId);
 
-            if (Equipment == null || EquipmentTranslations == null) throw new MinhDucEventException($"Cannot find a Equipment with id: {request.Id}");
+            if (Equipment == null || EquipmentTranslations == null)
+                throw new MinhDucEventException($"Cannot find a Equipment with id: {request.Id}");
 
             EquipmentTranslations.Name = request.Name;
             EquipmentTranslations.SeoAlias = request.SeoAlias;

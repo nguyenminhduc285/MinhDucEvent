@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MinhDucEvent.ViewModels.Catalog.EquipmentCategories
 {
-    public class EquipmentCategoryVm
+    public class EquipmentCategoryUpdateRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,9 @@ namespace MinhDucEvent.ViewModels.Catalog.EquipmentCategories
         public string SeoAlias { get; set; }
         public int? ParentId { get; set; }
         public Status Status { get; set; }
+        public bool IsShowOnHome { get; set; }
+
         public int SortOrder { get; set; }
+        public string LanguageId { get; set; }
     }
 }
