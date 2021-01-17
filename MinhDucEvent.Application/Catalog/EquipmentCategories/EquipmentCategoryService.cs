@@ -108,12 +108,6 @@ namespace MinhDucEvent.Application.Catalog.Categories
             var Equipmentca = await _context.EquipmentCategories.FindAsync(equipmentcaId);
             if (Equipmentca == null) throw new MinhDucEventException($"Cannot find a Equipment: {equipmentcaId}");
 
-            var images = _context.EquipmentImages.Where(i => i.EquipmentId == equipmentcaId);
-            foreach (var image in images)
-            {
-                await _storageService.DeleteFileAsync(image.ImagePath);
-            }
-
             _context.EquipmentCategories.Remove(Equipmentca);
 
             return await _context.SaveChangesAsync();

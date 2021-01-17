@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MinhDucEvent.ViewModels.Catalog.Categories
 {
-    class CategoryDeleteRequest
+    public class CategoryDeleteRequest
     {
+        public int Id { get; set; }
     }
 }
