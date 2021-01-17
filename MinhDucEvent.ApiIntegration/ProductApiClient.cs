@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using MinhDucEvent.Utilities.Constants;
 using MinhDucEvent.ViewModels.Catalog.Equipments;
 using MinhDucEvent.ViewModels.Catalog.Products;
 using MinhDucEvent.ViewModels.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace MinhDucEvent.ApiIntegration
@@ -67,12 +69,27 @@ namespace MinhDucEvent.ApiIntegration
             requestContent.Add(new StringContent(request.Stock.ToString()), "stock");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
-            requestContent.Add(new StringContent(request.productDetailVMs.ToString()));
+            var prvm = new ProductDetailVM()
+            {
+                EquipmentId = 1,
+                ProductId = 1,
+                Quantity = 1
+            };
+            request.productDetailVMs.Add(prvm);
+
+            var json = JsonConvert.SerializeObject(request.productDetailVMs);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            requestContent.Add(httpContent, "productdetailvms");
+
+            //requestContent.Add(new StringContent(request.productDetailVMs.ToString()));
+
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Details) ? "" : request.Details.ToString()), "details");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoDescription) ? "" : request.SeoDescription.ToString()), "seoDescription");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoTitle) ? "" : request.SeoTitle.ToString()), "seoTitle");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
             requestContent.Add(new StringContent(languageId), "languageId");
+
+            Console.WriteLine("requestContent -------------------------------- " + requestContent.ToString());
 
             var response = await client.PostAsync($"/api/products/", requestContent);
             return response.IsSuccessStatusCode;

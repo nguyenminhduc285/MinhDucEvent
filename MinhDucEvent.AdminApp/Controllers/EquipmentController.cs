@@ -6,7 +6,7 @@ using MinhDucEvent.ApiIntegration;
 using MinhDucEvent.Utilities.Constants;
 using MinhDucEvent.ViewModels.Catalog.Equipments;
 using MinhDucEvent.ViewModels.Common;
-using MinhDucEvent.ViewModels.System.Equipments;
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
