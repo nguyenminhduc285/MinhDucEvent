@@ -7,18 +7,40 @@
     
 }
 @section Scripts{
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+    
+   <script src="~/js/ckeditor/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#txt_details'), {
-                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-            })
-            .then(editor => {
-                window.editor = editor;
-            })
-            .catch(err => {
-                console.error(err.stack);
+         
+        $(document).ready(function () {
+            CKEDITOR.replace('txt_details',{
+                height: 100,
+                filebrowserUploadUrl: 'upload_detail_image'
             });
+        });
+        
+        $(document).ready(function(){
+            $(".addItem").on("click", function(event){
+                var dataString = {color: color}; //JSON-formatted string
+                $.ajax({  
+                    type: "POST",  
+                    url: "cart_update.php",  
+                    data: dataString
+                });
+            });
+        });
+        
+        
+        $(document).ready(function () {
+            $(".btn-add").on("click", function (event) {
+                   console.log("event = ", $('#id').val()) 
+            })    
+        })
+        
+          function Add(obj){
+                const id = $('.idItem').val();
+                console.log("id  ==== ",document.getElementById('idItem').innerText );
+            }
+        
     </script>
 }
 <div class="container-fluid">
@@ -58,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Details" class="control-label"></label>
-                        <textarea id="txt_details" asp-for="Details" rows="35" class="form-control"></textarea>
+                        <textarea id="txt_details" name="txt_details" asp-for="Details" rows="35" class="form-control"></textarea>
                         <span asp-validation-for="Details" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -102,33 +124,33 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="form-group" asp-for="eqm">
+                            <tbody class="form-group" asp-for="eqm" id="item_body">
                                 @* @for(int i = 0; i < Model.eqm.Count(); i++) *@
                             @foreach(var item in Model.eqm)
                                 {
                                     
                                     <tr>
-                                        <td>
+                                        <td id="idItem">
                                             @Html.DisplayFor(modelItem => item.Id)
                                             @* $1$ <input asp-for="EquipmentVm[0]." type="file" class="form-control" value="@Html.DisplayFor(modelItem => item.Id)" /> #1# *@
                                             @* @Html.TextAreaFor(modelItem => item.Id) *@
                                             @* @Html.TextBoxFor( s=> s.eqm[i].Id,new {@class="form-group"}) *@
                                         </td>
-                                        <td>
+                                        <td id="Name">
                                             @Html.DisplayFor(modelItem => item.Name)
                                              @* @Html.TextBoxFor(s => s.eqm[i].Name,new {@class="form-group"}) *@
                                         </td>
-                                        <td>
+                                        <td id="EquipmentCategories">
                                             @Html.DisplayFor(modelItem => item.EquipmentCategories)
                                             @* @Html.TextBoxFor( s => s.eqm[i].EquipmentCategories, new {@class="form-group"}) *@
                                         </td>
 
-                                        <td>
+                                        <td id="Stock">
                                            @Html.TextBoxFor(modelItem => item.Stock)
                                             @* @Html.TextBoxFor(s => s.eqm[i].Stock, new{@class="form-group"}) *@
                                         </td>
                                         <td>
-                                            <a>Them </a>
+                                            <button onclick="Add($(this))">Add</button>
                                         </td>
                                     </tr>
                                 }
