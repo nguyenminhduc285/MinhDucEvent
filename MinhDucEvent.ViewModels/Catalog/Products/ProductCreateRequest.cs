@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using MinhDucEvent.ViewModels.Catalog.Equipments;
 
 namespace MinhDucEvent.ViewModels.Catalog.Products
 {
@@ -24,7 +25,7 @@ namespace MinhDucEvent.ViewModels.Catalog.Products
         public string LanguageId { set; get; }
         public bool? IsFeature { get; set; }
         public List<ProductDetailVM> productDetailVMs { get; set; } = new List<ProductDetailVM>();
-
+        public List<EquipmentVm> eqm { get; set; } = new List<EquipmentVm>();
         public IFormFile ThumbnailImage { get; set; }
     }
 }

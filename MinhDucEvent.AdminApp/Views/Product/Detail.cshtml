@@ -1,10 +1,9 @@
-﻿@model MinhDucEvent.ViewModels.Catalog.Products.ProductCreateRequest;
-@using System.ComponentModel.DataAnnotations;
+@model MinhDucEvent.ViewModels.Catalog.Products.ProductEdit;
+
 @{
     ViewData["Title"] = "Tạo mới sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
-   
-    
+    var lequipment = (MinhDucEvent.ViewModels.Catalog.Products.ProductVm)ViewBag.ProductDetails;
 }
 @section Scripts{
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
@@ -22,10 +21,10 @@
     </script>
 }
 <div class="container-fluid">
-    <h1 class="mt-4">Tạo mới San Pham</h1>
+    <h1 class="mt-4">chi tiết sản phẩm</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Tạo mới sản phẩm</li>
+        <li class="breadcrumb-item active">chi tiết sản phẩm</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
@@ -34,54 +33,59 @@
 
         <div class="card-body">
             <div class="col-md-8">
-                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                     <div class="form-group" style="display: none">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" class="form-control" disabled />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control" disabled/>
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Price" class="control-label"></label>
-                        <input asp-for="Price" type="number" class="form-control" />
+                        <input asp-for="Price" type="number" class="form-control" disabled/>
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="OriginalPrice" class="control-label"></label>
-                        <input asp-for="OriginalPrice" type="number" class="form-control" />
+                        <input asp-for="OriginalPrice" type="number" class="form-control" disabled/>
                         <span asp-validation-for="OriginalPrice" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
-                        <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+                        <textarea asp-for="Description" rows="5" class="form-control" disabled></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Details" class="control-label"></label>
-                        <textarea id="txt_details" asp-for="Details" rows="35" class="form-control"></textarea>
+                        <textarea id="txt_details" asp-for="Details" rows="35" class="form-control" disabled></textarea>
                         <span asp-validation-for="Details" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoDescription" class="control-label"></label>
-                        <input asp-for="SeoDescription" class="form-control" />
-                        <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                        <input asp-for="SeoDescription" class="form-control" disabled/>
+                        <span asp-validation-for="SeoDescription" class="text-danger" ></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoTitle" class="control-label"></label>
-                        <input asp-for="SeoTitle" class="form-control" />
+                        <input asp-for="SeoTitle" class="form-control" disabled/>
                         <span asp-validation-for="SeoTitle" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoAlias" class="control-label"></label>
-                        <input asp-for="SeoAlias" class="form-control" />
+                        <input asp-for="SeoAlias" class="form-control" disabled/>
                         <span asp-validation-for="SeoAlias" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ThumbnailImage" class="control-label"></label>
-                        <input asp-for="ThumbnailImage" type="file" class="form-control" />
+                        <input asp-for="ThumbnailImage" type="file" class="form-control" disabled/>
                         <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                     </div>
-
+                    
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -135,11 +139,7 @@
                             </tbody>
                         </table>
                     </div>
-                   @* @await Component.InvokeAsync("Pager", lequipment) *@
-
-                    <div class="form-group">
-                        <input type="submit" value="Tạo mới" class="btn btn-primary" />
-                    </div>
+                   
                 </form>
             </div>
         </div>
