@@ -6,7 +6,7 @@ using MinhDucEvent.ViewModels.Catalog.Categories;
 using MinhDucEvent.ViewModels.Catalog.ProductImages;
 using MinhDucEvent.ViewModels.Catalog.Products;
 
-namespace eShopSolution.WebApp.Models
+namespace MinhDucEvent.WebApp.Models
 {
     public class ProductDetailViewModel
     {

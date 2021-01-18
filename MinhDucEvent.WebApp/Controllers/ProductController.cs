@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using eShopSolution.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using MinhDucEvent.ApiIntegration;
 using MinhDucEvent.ViewModels.Catalog.Products;
+using MinhDucEvent.WebApp.Models;
+using System.Threading.Tasks;
 
-namespace eShopSolution.WebApp.Controllers
+namespace MinhDucEvent.WebApp.Controllers
 {
     public class ProductController : Controller
     {
