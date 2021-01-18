@@ -92,7 +92,7 @@ namespace MinhDucEvent.AdminApp.Controllers
             var path = Path.Combine(Directory.GetCurrentDirectory(), _hostingE.WebRootPath, "upload", filename);
             var stream = new FileStream(path,FileMode.Create);
             upload.CopyToAsync(stream);
-            return new JsonResult(new {path = "/upload/" + filename});
+            return new JsonResult(new {path = "https://localhost:5011" +  "/upload/" + filename});
         }
 
         [HttpPost]
