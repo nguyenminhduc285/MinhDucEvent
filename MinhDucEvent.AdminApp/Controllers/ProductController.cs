@@ -8,8 +8,10 @@ using MinhDucEvent.ViewModels.Catalog.Equipments;
 using MinhDucEvent.ViewModels.Catalog.Products;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MinhDucEvent.AdminApp.Controllers
 {
@@ -20,17 +22,20 @@ namespace MinhDucEvent.AdminApp.Controllers
 
         private readonly ICategoryApiClient _categoryApiClient;
         private readonly IEquipmentApiClient _equipmentApiClient;
-
+        private readonly IWebHostEnvironment _hostingE;
+        
         public ProductController(IProductApiClient productApiClient,
             IConfiguration configuration,
             ICategoryApiClient categoryApiClient,
-            IEquipmentApiClient equipmentApiClient
+            IEquipmentApiClient equipmentApiClient,
+            IWebHostEnvironment hostingE
             )
         {
             _configuration = configuration;
             _productApiClient = productApiClient;
             _categoryApiClient = categoryApiClient;
             _equipmentApiClient = equipmentApiClient;
+            _hostingE = hostingE;
         }
 
         public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 3)
@@ -79,6 +84,15 @@ namespace MinhDucEvent.AdminApp.Controllers
             var obj = new ProductCreateRequest();
               obj.eqm = leq.Result.Items.FindAll(s=> s.Id > 0);
               return View(obj);
+        }
+        [HttpPost]
+        public IActionResult upload_detail_image(IFormFile upload)
+        {
+            var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
+            var path = Path.Combine(Directory.GetCurrentDirectory(), _hostingE.WebRootPath, "upload", filename);
+            var stream = new FileStream(path,FileMode.Create);
+            upload.CopyToAsync(stream);
+            return new JsonResult(new {path = "/upload/" + filename});
         }
 
         [HttpPost]

@@ -54,7 +54,7 @@ namespace MinhDucEvent.BackendApi.Controllers
             var products = await _productService.GetLatestProducts(languageId, take);
             return Ok(products);
         }
-
+        
         [HttpPost]
         [Consumes("multipart/form-data")]
         [Authorize]
