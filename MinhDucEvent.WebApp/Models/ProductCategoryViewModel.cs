@@ -2,7 +2,7 @@ using MinhDucEvent.ViewModels.Catalog.Categories;
 using MinhDucEvent.ViewModels.Catalog.Products;
 using MinhDucEvent.ViewModels.Common;
 
-namespace eShopSolution.WebApp.Models
+namespace MinhDucEvent.WebApp.Models
 {
     public class ProductCategoryViewModel
     {
