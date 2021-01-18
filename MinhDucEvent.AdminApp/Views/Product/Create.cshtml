@@ -10,37 +10,37 @@
     
    <script src="~/js/ckeditor/ckeditor.js"></script>
     <script>
-         
-        $(document).ready(function () {
-            CKEDITOR.replace('txt_details',{
-                height: 100,
-                filebrowserUploadUrl: 'upload_detail_image'
-            });
-        });
+   
+        var editor =  CKEDITOR.replace('Details',{
+                                     height: 100,
+                                     extraPlugins: 'filebrowser',
+                                     filebrowserUploadMethod: 'form',
+                                     filebrowserUploadUrl: 'upload_detail_image'
+                                 });
         
         $(document).ready(function(){
             $(".addItem").on("click", function(event){
                 var dataString = {color: color}; //JSON-formatted string
-                $.ajax({  
-                    type: "POST",  
-                    url: "cart_update.php",  
+                $.ajax({
+                    type: "POST",
+                    url: "cart_update.php",
                     data: dataString
                 });
             });
         });
-        
-        
+   
+   
         $(document).ready(function () {
             $(".btn-add").on("click", function (event) {
-                   console.log("event = ", $('#id').val()) 
-            })    
+                   console.log("event = ", $('#id').val())
+            })
         })
-        
+   
           function Add(obj){
                 const id = $('.idItem').val();
                 console.log("id  ==== ",document.getElementById('idItem').innerText );
             }
-        
+   
     </script>
 }
 <div class="container-fluid">
@@ -80,7 +80,8 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Details" class="control-label"></label>
-                        <textarea id="txt_details" name="txt_details" asp-for="Details" rows="35" class="form-control"></textarea>
+                        <textarea name="Details" id="Details" rows="35" class="form-control"></textarea>
+                        @* <div id="txt_details"  class="form-control" >abc</div> *@
                         <span asp-validation-for="Details" class="text-danger"></span>
                     </div>
                     <div class="form-group">
