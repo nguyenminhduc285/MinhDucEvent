@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+
 using Newtonsoft.Json;
 
 namespace MinhDucEvent.ApiIntegration
@@ -33,9 +34,23 @@ namespace MinhDucEvent.ApiIntegration
             _httpClientFactory = httpClientFactory;
         }
 
-        public Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
+        public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
         {
-            throw new NotImplementedException();
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"/api/products/{id}/categories", httpContent);
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
         public async Task<bool> CreateProduct(ProductCreateRequest request)
@@ -123,14 +138,13 @@ namespace MinhDucEvent.ApiIntegration
             var data = await GetAsync<PagedResult<ProductVm>>(
                 $"/api/products/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
-                $"&keyword={request.Keyword}&languageId={request.LanguageId}&productcategoryId={request.CategoryId}");
+                $"&keyword={request.Keyword}&languageId={request.LanguageId}&categoryId={request.CategoryId}");
 
             return data;
         }
 
         public async Task<bool> UpdateProduct(ProductUpdateRequest request)
         {
-            
             var sessions = _httpContextAccessor
                 .HttpContext
                 .Session
@@ -141,7 +155,7 @@ namespace MinhDucEvent.ApiIntegration
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
-            
+
             var requestContent = new MultipartFormDataContent();
 
             if (request.ThumbnailImage != null)
@@ -166,9 +180,8 @@ namespace MinhDucEvent.ApiIntegration
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
             requestContent.Add(new StringContent(languageId), "languageId");
 
-            
             var response = await client.PutAsync($"/api/products/{request.Id}", requestContent);
-            var result =  response.IsSuccessStatusCode;
+            var result = response.IsSuccessStatusCode;
             return result;
         }
     }

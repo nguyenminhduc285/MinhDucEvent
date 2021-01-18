@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MinhDucEvent.ApiIntegration;
 using MinhDucEvent.Utilities.Constants;
 using MinhDucEvent.ViewModels.Sales;
 using MinhDucEvent.WebApp.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MinhDucEvent.WebApp.Controllers
 {
     public class CartController : Controller
     {
         private readonly IProductApiClient _productApiClient;
+        private readonly IOrderApiCLient _orderApiClient;
 
-        public CartController(IProductApiClient productApiClient)
+        public CartController(IProductApiClient productApiClient, IOrderApiCLient orderApiClient)
         {
             _productApiClient = productApiClient;
+            _orderApiClient = orderApiClient;
         }
 
         public IActionResult Index()
@@ -32,8 +34,10 @@ namespace MinhDucEvent.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(CheckoutViewModel request)
+        public async Task<IActionResult> Checkout(CheckoutViewModel request)
         {
+            if (!ModelState.IsValid)
+                return View(request);
             var model = GetCheckoutViewModel();
             var orderDetails = new List<OrderDetailVm>();
             foreach (var item in model.CartItems)
@@ -41,7 +45,8 @@ namespace MinhDucEvent.WebApp.Controllers
                 orderDetails.Add(new OrderDetailVm()
                 {
                     ProductId = item.ProductId,
-                    Quantity = item.Quantity
+                    Quantity = item.Quantity,
+                    Price = item.Price
                 });
             }
             var checkoutRequest = new CheckoutRequest()
@@ -51,10 +56,22 @@ namespace MinhDucEvent.WebApp.Controllers
                 Email = request.CheckoutModel.Email,
                 PhoneNumber = request.CheckoutModel.PhoneNumber,
                 OrderDetails = orderDetails,
-                OrderDate = request.CheckoutModel.OrderDate
+                OrderDate = request.CheckoutModel.OrderDate,
+                UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de")
             };
             //TODO: Add to API
-            TempData["SuccessMsg"] = "Order puschased successful";
+
+            var result = await _orderApiClient.CreateOrder(checkoutRequest);
+            if (result)
+            {
+                TempData["SuccessMsg"] = "Order puschased successful";
+                HttpContext.Session.SetString(SystemConstants.CartSession, "");
+            }
+            else
+            {
+                TempData["SuccessMsg"] = "Order puschased unsuccessful";
+            }
+
             return View(model);
         }
 

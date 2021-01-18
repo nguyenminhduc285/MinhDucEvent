@@ -54,7 +54,7 @@ namespace MinhDucEvent.BackendApi.Controllers
             var products = await _productService.GetLatestProducts(languageId, take);
             return Ok(products);
         }
-        
+
         [HttpPost]
         [Consumes("multipart/form-data")]
         [Authorize]
@@ -106,7 +106,6 @@ namespace MinhDucEvent.BackendApi.Controllers
             var isSuccessful = await _productService.UpdatePrice(productId, newPrice);
             if (isSuccessful)
                 return Ok();
-
             return BadRequest();
         }
 

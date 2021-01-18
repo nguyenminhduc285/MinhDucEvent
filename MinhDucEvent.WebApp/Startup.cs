@@ -84,6 +84,7 @@ namespace MinhDucEvent.WebApp
             services.AddTransient<ISlideApiClient, SlideApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
+            services.AddTransient<IOrderApiCLient, OrderApiCLient>();
             services.AddTransient<IUserApiClient, UserApiClient>();
         }
 

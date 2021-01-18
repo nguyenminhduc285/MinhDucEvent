@@ -6,6 +6,8 @@ namespace MinhDucEvent.ViewModels.Sales
 {
     public class CheckoutRequest
     {
+        public Guid UserId { set; get; }
+
         public string Name { get; set; }
 
         public string Address { get; set; }

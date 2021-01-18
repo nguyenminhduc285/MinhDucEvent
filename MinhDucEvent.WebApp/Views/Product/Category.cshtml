@@ -1,4 +1,4 @@
-@model eShopSolution.WebApp.Models.ProductCategoryViewModel
+@model MinhDucEvent.WebApp.Models.ProductCategoryViewModel
 
 @{
     ViewData["Title"] = Model.Category.Name + (Model.Products.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Products.PageIndex);
@@ -12,11 +12,8 @@
     <li><a href="/@culture/Home/Index">Home</a> <span class="divider">/</span></li>
     <li class="active">Products Name</li>
 </ul>
-<h3> @Model.Category.Name <small class="pull-right"> 40 <localize>available products</localize> </small></h3>
+<h3> @Model.Category.Name <small class="pull-right">  </small></h3>
 <hr class="soft" />
-<p>
-    Mô tả của ứng dụng (hard)
-</p>
 <hr class="soft" />
 <form class="form-horizontal span6">
     <div class="control-group">

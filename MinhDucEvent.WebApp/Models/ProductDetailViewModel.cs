@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MinhDucEvent.ViewModels.Catalog.Categories;
 using MinhDucEvent.ViewModels.Catalog.ProductImages;
 using MinhDucEvent.ViewModels.Catalog.Products;
+using System.Collections.Generic;
 
 namespace MinhDucEvent.WebApp.Models
 {

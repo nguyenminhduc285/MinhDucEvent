@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MinhDucEvent.Application.Catalog.Categories;
 using MinhDucEvent.Application.Catalog.Equipments;
+using MinhDucEvent.Application.Catalog.Orders;
 using MinhDucEvent.Application.Catalog.Products;
 using MinhDucEvent.Application.Common;
 using MinhDucEvent.Application.System.Languages;
@@ -52,10 +53,12 @@ namespace MinhDucEvent.BackendApi
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
             services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IEquipmentCategoryService, EquipmentCategoryService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<ISlideService, SlideService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             //config validator
             services.AddControllers()

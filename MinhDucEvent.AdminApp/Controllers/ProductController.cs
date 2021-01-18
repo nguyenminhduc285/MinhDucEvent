@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using MinhDucEvent.ViewModels.Common;
 
 namespace MinhDucEvent.AdminApp.Controllers
 {
@@ -23,7 +24,7 @@ namespace MinhDucEvent.AdminApp.Controllers
         private readonly ICategoryApiClient _categoryApiClient;
         private readonly IEquipmentApiClient _equipmentApiClient;
         private readonly IWebHostEnvironment _hostingE;
-        
+
         public ProductController(IProductApiClient productApiClient,
             IConfiguration configuration,
             ICategoryApiClient categoryApiClient,
@@ -38,7 +39,7 @@ namespace MinhDucEvent.AdminApp.Controllers
             _hostingE = hostingE;
         }
 
-        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 3)
+        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 10)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
@@ -80,19 +81,20 @@ namespace MinhDucEvent.AdminApp.Controllers
                 LanguageId = languageId,
                 PageIndex = 1,
                 PageSize = 80
-            }); 
+            });
             var obj = new ProductCreateRequest();
-              obj.eqm = leq.Result.Items.FindAll(s=> s.Id > 0);
-              return View(obj);
+            obj.eqm = leq.Result.Items.FindAll(s => s.Id > 0);
+            return View(obj);
         }
+
         [HttpPost]
         public IActionResult upload_detail_image(IFormFile upload)
         {
             var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
             var path = Path.Combine(Directory.GetCurrentDirectory(), _hostingE.WebRootPath, "upload", filename);
-            var stream = new FileStream(path,FileMode.Create);
+            var stream = new FileStream(path, FileMode.Create);
             upload.CopyToAsync(stream);
-            return new JsonResult(new {path = "https://localhost:5011" +  "/upload/" + filename});
+            return new JsonResult(new { path = "https://localhost:5011" + "/upload/" + filename });
         }
 
         [HttpPost]
@@ -112,19 +114,33 @@ namespace MinhDucEvent.AdminApp.Controllers
             ModelState.AddModelError("", "Thêm sản phẩm thất bại");
             return View(request);
         }
-        [HttpGet, ActionName("Delete")]
-        public async Task<IActionResult> Delete(int id)
+
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            var result = await _productApiClient.DeleteProduct(id);
+            return View(new ProductDeleteRequest()
+            {
+                Id = id
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ProductDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _productApiClient.DeleteProduct(request.Id);
             if (result)
             {
                 TempData["result"] = "Xóa sản phẩm thành công";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Xóa sản phẩm thất bại");
-            return  View("~/Views/Product/Index.cshtml");
+            ModelState.AddModelError("", "Xóa không thành công");
+            return View(request);
         }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -137,26 +153,26 @@ namespace MinhDucEvent.AdminApp.Controllers
                 LanguageId = languageId,
                 PageIndex = 1,
                 PageSize = 80
-            }); 
-            
-            var product = _productApiClient.GetById(id,languageId).Result;
+            });
+
+            var product = _productApiClient.GetById(id, languageId).Result;
             var resultProduction = new ProductEdit()
             {
                 Name = product.Name,
                 Price = product.Price,
                 OriginalPrice = product.OriginalPrice,
                 Description = product.Description,
-                Details= product.Details,
-                SeoDescription=product.SeoDescription,
+                Details = product.Details,
+                SeoDescription = product.SeoDescription,
                 SeoTitle = product.SeoTitle,
-                SeoAlias=product.SeoAlias,
-                ThumbnailImage=product.ThumbnailImage,
+                SeoAlias = product.SeoAlias,
+                ThumbnailImage = product.ThumbnailImage,
                 eqm = leq.Result.Items
             };
-         
+
             return View(resultProduction);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Edit([FromForm] ProductUpdateRequest request)
         {
@@ -171,7 +187,7 @@ namespace MinhDucEvent.AdminApp.Controllers
             }
 
             ModelState.AddModelError("", "Fail Update");
-            return  View("~/Views/Product/Index.cshtml");
+            return View("~/Views/Product/Index.cshtml");
         }
 
         [HttpGet]
@@ -185,23 +201,69 @@ namespace MinhDucEvent.AdminApp.Controllers
                 LanguageId = languageId,
                 PageIndex = 1,
                 PageSize = 80
-            }); 
-            var product = _productApiClient.GetById(id,languageId).Result;
+            });
+            var product = _productApiClient.GetById(id, languageId).Result;
             var resultProduction = new ProductEdit()
             {
                 Name = product.Name,
                 Price = product.Price,
                 OriginalPrice = product.OriginalPrice,
                 Description = product.Description,
-                Details= product.Details,
-                SeoDescription=product.SeoDescription,
+                Details = product.Details,
+                SeoDescription = product.SeoDescription,
                 SeoTitle = product.SeoTitle,
-                SeoAlias=product.SeoAlias,
-                ThumbnailImage=product.ThumbnailImage,
+                SeoAlias = product.SeoAlias,
+                ThumbnailImage = product.ThumbnailImage,
                 eqm = leq.Result.Items
             };
-         
+
             return View(resultProduction);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CategoryAssign(int id)
+        {
+            var roleAssignRequest = await GetCategoryAssignRequest(id);
+            return View(roleAssignRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CategoryAssign(CategoryAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _productApiClient.CategoryAssign(request.Id, request);
+
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Cập nhật danh mục thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+            var roleAssignRequest = await GetCategoryAssignRequest(request.Id);
+
+            return View(roleAssignRequest);
+        }
+
+        private async Task<CategoryAssignRequest> GetCategoryAssignRequest(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var product = await _productApiClient.GetById(id, languageId);
+            var equipmentcategories = await _categoryApiClient.GetAll(languageId);
+            var categoryAssignRequest = new CategoryAssignRequest();
+            foreach (var role in equipmentcategories)
+            {
+                categoryAssignRequest.Categories.Add(new SelectItem()
+                {
+                    Id = role.Id.ToString(),
+                    Name = role.Name,
+                    Selected = product.Categories.Contains(role.Name)
+                });
+            }
+            return categoryAssignRequest;
         }
     }
 }
