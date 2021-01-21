@@ -54,15 +54,14 @@
         <form class="form-horizontal qtyFrm">
             <div class="control-group">
                 <div class="controls">
-                    
-                    <button type="submit" class="btn btn-large btn-primary pull-right"> <localize>Add to</localize> <i class=" icon-shopping-cart"></i></button>
+
+                    <a class="btn btn-add-cart" data-id="@Model.Product.Id" href="#"> <localize>Add to</localize> <i class=" icon-shopping-cart"></i></a>
                 </div>
             </div>
         </form>
 
         <hr class="soft" />
 
-       
         <hr class="soft clr" />
         <p>
             @Html.Raw(Model.Product.Details)
@@ -80,7 +79,7 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="home">
-                <h4>Product Information</h4>
+                <h4> <localize>Product Information</localize></h4>
                 @Html.Raw(Model.Product.Details)
             </div>
             <div class="tab-pane fade" id="profile">
@@ -90,7 +89,7 @@
                 </div>
                 <br class="clr" />
                 <hr class="soft" />
-                <div class="tab-content">
+                <div class="tab-conte   nt">
                     <div class="tab-pane" id="listView">
                         <div class="row">
                             <div class="span2">

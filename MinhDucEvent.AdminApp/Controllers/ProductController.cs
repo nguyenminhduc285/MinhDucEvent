@@ -80,7 +80,7 @@ namespace MinhDucEvent.AdminApp.Controllers
                 Keyword = null,
                 LanguageId = languageId,
                 PageIndex = 1,
-                PageSize = 80
+                PageSize = 5
             });
             var obj = new ProductCreateRequest();
             obj.eqm = leq.Result.Items.FindAll(s => s.Id > 0);
@@ -89,6 +89,17 @@ namespace MinhDucEvent.AdminApp.Controllers
 
         [HttpPost]
         public IActionResult upload_detail_image(IFormFile upload)
+        {
+            var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
+            var path = Path.Combine(Directory.GetCurrentDirectory(), _hostingE.WebRootPath, "upload", filename);
+            var stream = new FileStream(path, FileMode.Create);
+            upload.CopyToAsync(stream);
+            return new JsonResult(new { path = "https://localhost:5011" + "/upload/" + filename });
+        }
+
+        [Route("edit_upload_detail_image")]
+        [HttpPost]
+        public IActionResult edit_upload_detail_image(IFormFile upload)
         {
             var filename = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
             var path = Path.Combine(Directory.GetCurrentDirectory(), _hostingE.WebRootPath, "upload", filename);
@@ -152,7 +163,7 @@ namespace MinhDucEvent.AdminApp.Controllers
                 Keyword = null,
                 LanguageId = languageId,
                 PageIndex = 1,
-                PageSize = 80
+                PageSize = 8
             });
 
             var product = _productApiClient.GetById(id, languageId).Result;
@@ -174,10 +185,11 @@ namespace MinhDucEvent.AdminApp.Controllers
         }
 
         [HttpPost]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> Edit([FromForm] ProductUpdateRequest request)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/Product/Index.cshtml");
+                return View(request);
 
             var result = await _productApiClient.UpdateProduct(request);
             if (result)

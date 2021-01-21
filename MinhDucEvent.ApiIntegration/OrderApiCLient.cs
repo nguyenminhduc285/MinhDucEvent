@@ -53,7 +53,7 @@ namespace MinhDucEvent.ApiIntegration
         public async Task<PagedResult<CheckoutRequest>> GetPagings(GetManageOrderPagingRequest request)
         {
             var data = await GetAsync<PagedResult<CheckoutRequest>>(
-                $"/api/equipments/paging?pageIndex={request.PageIndex}" +
+                $"/api/orders/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
                 $"&keyword={request.Keyword}");
 

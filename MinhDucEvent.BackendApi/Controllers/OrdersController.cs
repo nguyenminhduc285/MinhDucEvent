@@ -33,8 +33,8 @@ namespace MinhDucEvent.BackendApi.Controllers
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetManageOrderPagingRequest request)
         {
-            var categories = await _oderService.GetAllPaging(request);
-            return Ok(categories);
+            var orders = await _oderService.GetAllPaging(request);
+            return Ok(orders);
         }
 
         [HttpPost]

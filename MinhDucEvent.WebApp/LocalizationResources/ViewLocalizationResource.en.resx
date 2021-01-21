@@ -179,6 +179,9 @@
     <value>Product Details</value>
     <comment>/Product/Detail</comment>
   </data>
+  <data name="Product Information" xml:space="preserve">
+    <value>Product Information</value>
+  </data>
   <data name="products" xml:space="preserve">
     <value>products</value>
     <comment>Common</comment>

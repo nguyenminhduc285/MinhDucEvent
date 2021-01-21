@@ -179,6 +179,9 @@
     <value>Chi tiết sản phẩm</value>
     <comment>/Product/Detail</comment>
   </data>
+  <data name="Product Information" xml:space="preserve">
+    <value>Thông tin sản phẩm</value>
+  </data>
   <data name="products" xml:space="preserve">
     <value>san-pham</value>
     <comment>Common</comment>

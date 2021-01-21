@@ -69,6 +69,7 @@ namespace MinhDucEvent.Application.Catalog.Orders
                 .Take(request.PageSize)
                 .Select(x => new CheckoutRequest()
                 {
+                    Id = x.oder.Id,
                     Name = x.oder.ShipName,
                     Address = x.oder.ShipAddress,
                     Email = x.oder.ShipEmail,

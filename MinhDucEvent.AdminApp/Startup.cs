@@ -47,6 +47,7 @@ namespace MinhDucEvent.AdminApp
             services.AddTransient<IEquipmentCategoryApiClient, EquipmentCategoryApiClient>();
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
+            services.AddTransient<IOrderApiCLient, OrderApiCLient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

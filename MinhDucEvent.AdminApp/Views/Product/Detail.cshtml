@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Tạo mới sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var lequipment = (MinhDucEvent.ViewModels.Catalog.Products.ProductVm)ViewBag.ProductDetails;
 }
 @section Scripts{
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
@@ -35,24 +34,24 @@
             <div class="col-md-8">
                 <form asp-action="Edit" enctype="multipart/form-data" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                     <div class="form-group" style="display: none">
+                    <div class="form-group" style="display: none">
                         <label asp-for="Id" class="control-label"></label>
                         <input asp-for="Id" class="form-control" disabled />
                         <span asp-validation-for="Id" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" disabled/>
+                        <input asp-for="Name" class="form-control" disabled />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Price" class="control-label"></label>
-                        <input asp-for="Price" type="number" class="form-control" disabled/>
+                        <input asp-for="Price" type="number" class="form-control" disabled />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="OriginalPrice" class="control-label"></label>
-                        <input asp-for="OriginalPrice" type="number" class="form-control" disabled/>
+                        <input asp-for="OriginalPrice" type="number" class="form-control" disabled />
                         <span asp-validation-for="OriginalPrice" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -67,79 +66,24 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoDescription" class="control-label"></label>
-                        <input asp-for="SeoDescription" class="form-control" disabled/>
-                        <span asp-validation-for="SeoDescription" class="text-danger" ></span>
+                        <input asp-for="SeoDescription" class="form-control" disabled />
+                        <span asp-validation-for="SeoDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoTitle" class="control-label"></label>
-                        <input asp-for="SeoTitle" class="form-control" disabled/>
+                        <input asp-for="SeoTitle" class="form-control" disabled />
                         <span asp-validation-for="SeoTitle" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="SeoAlias" class="control-label"></label>
-                        <input asp-for="SeoAlias" class="form-control" disabled/>
+                        <input asp-for="SeoAlias" class="form-control" disabled />
                         <span asp-validation-for="SeoAlias" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ThumbnailImage" class="control-label"></label>
-                        <input asp-for="ThumbnailImage" type="file" class="form-control" disabled/>
+                        <input asp-for="ThumbnailImage" type="file" class="form-control" disabled />
                         <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                     </div>
-                    
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Mã Thiet Bi
-                                    </th>
-                                    <th>
-                                        Tên
-                                    </th>
-                                    <th>
-                                        Loai
-                                    </th>
-                                    <th>
-                                        Số lượng
-                                    </th>
-                                    <th>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="form-group" asp-for="eqm">
-                                @* @for(int i = 0; i < Model.eqm.Count(); i++) *@
-                            @foreach(var item in Model.eqm)
-                                {
-                                    
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Id)
-                                            @* $1$ <input asp-for="EquipmentVm[0]." type="file" class="form-control" value="@Html.DisplayFor(modelItem => item.Id)" /> #1# *@
-                                            @* @Html.TextAreaFor(modelItem => item.Id) *@
-                                            @* @Html.TextBoxFor( s=> s.eqm[i].Id,new {@class="form-group"}) *@
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                             @* @Html.TextBoxFor(s => s.eqm[i].Name,new {@class="form-group"}) *@
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.EquipmentCategories)
-                                            @* @Html.TextBoxFor( s => s.eqm[i].EquipmentCategories, new {@class="form-group"}) *@
-                                        </td>
-
-                                        <td>
-                                           @Html.TextBoxFor(modelItem => item.Stock)
-                                            @* @Html.TextBoxFor(s => s.eqm[i].Stock, new{@class="form-group"}) *@
-                                        </td>
-                                        <td>
-                                            <a>Them </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                   
                 </form>
             </div>
         </div>

@@ -54,7 +54,7 @@ namespace MinhDucEvent.Application.Catalog.Equipments
             var user = await _context.Equipments.FindAsync(id);
             if (user == null)
             {
-                return new ApiErrorResult<bool>($"Thiet bi với id {id} không tồn tại");
+                return new ApiErrorResult<bool>($"Thiết bị với id {id} không tồn tại");
             }
             foreach (var category in request.Categories)
             {
