@@ -8,17 +8,17 @@
     var culture = CultureInfo.CurrentCulture.Name;
 }
 <ul class="breadcrumb">
-    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-    <li class="active"> SHOPPING CART</li>
+    <li><a href="index.html"><localize>Home</localize></a> <span class="divider">/</span></li>
+    <li class="active"> <localize>SHOPPING CART</localize></li>
 </ul>
 <h3>
-    SHOPPING CART [ <small>@Model.CartItems.Count Item(s) </small>]
-    <a href="/" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
+    <localize> SHOPPING CART</localize> [ <small>@Model.CartItems.Count <localize>Item(s) </localize> </small>]
+    <a href="/" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> <localize>Continue Shopping</localize> </a>
 </h3>
 <hr class="soft" />
 @if (TempData["SuccessMsg"] != null)
 {
-    <span class="alert alert-success">@TempData["SuccessMsg"]</span>
+    <span class="alert alert-success"> <localize> @TempData["SuccessMsg"]</localize> </span>
 }
 else
 {
@@ -26,11 +26,11 @@ else
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
+                <th><localize>Product          </localize></th>
+                <th><localize>Description      </localize></th>
+                <th><localize>Quantity  </localize></th>
+                <th><localize>Price            </localize></th>
+                <th><localize>Total            </localize></th>
             </tr>
         </thead>
         <tbody>
@@ -48,58 +48,58 @@ else
             }
 
             <tr>
-                <td colspan="4" style="text-align:right"><strong>TOTAL =</strong></td>
+                <td colspan="4" style="text-align:right"><strong><localize>Total</localize> =</strong></td>
                 <td class="label label-important" style="display:block"> <strong> @Model.CartItems.Sum(x => x.Quantity * x.Price).ToString("N0")</strong></td>
             </tr>
         </tbody>
     </table>
 
     <table class="table table-bordered">
-        <tr><th>ESTIMATE YOUR SHIPPING </th></tr>
+        <tr><th><localize>ESTIMATE YOUR SHIPPING</localize> </th></tr>
         <tr>
             <td>
                 <form class="form-horizontal" action="/@culture/Cart/Checkout" method="post">
                     <div class="control-group">
-                        <label class="control-label" for="inputCountry">Name </label>
+                        <label class="control-label" for="inputCountry"><localize> Name </localize></label>
                         <div class="controls">
                             <input type="text" id="inputCountry" asp-for="CheckoutModel.Name" placeholder="Name">
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputCountry">Address </label>
+                        <label class="control-label" for="inputCountry"><localize>Address </localize></label>
                         <div class="controls">
                             <input type="text" id="inputCountry" asp-for="CheckoutModel.Address" placeholder="Address">
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="inputCountry">Email </label>
+                        <label class="control-label" for="inputCountry"><localize>Email</localize> </label>
                         <div class="controls">
                             <input type="text" id="inputCountry" asp-for="CheckoutModel.Email" placeholder="Email">
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="inputCountry">PhoneNumber </label>
+                        <label class="control-label" for="inputCountry"><localize>PhoneNumber</localize> </label>
                         <div class="controls">
                             <input type="text" id="inputCountry" asp-for="CheckoutModel.PhoneNumber" placeholder="PhoneNumber">
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="inputCountry">OrderDate </label>
+                        <label class="control-label" for="inputCountry"><localize>OrderDate </localize></label>
                         <div class="controls">
-                            <input type="text" id="inputCountry" asp-for="CheckoutModel.OrderDate" placeholder="OrderDate">
+                            <input type="date" id="inputCountry" asp-for="CheckoutModel.OrderDate" placeholder="OrderDate" value="">
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button type="submit" class="btn">Purchase </button>
+                            <button type="submit" class="btn"><localize>Purchase </localize></button>
                         </div>
                     </div>
                 </form>
             </td>
         </tr>
     </table>
-    <a href="/" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+    <a href="/" class="btn btn-large"><i class="icon-arrow-left"></i><localize> Continue Shopping </localize></a>
 }

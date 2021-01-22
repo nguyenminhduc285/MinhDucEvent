@@ -41,7 +41,7 @@ namespace MinhDucEvent.Application.Catalog.Orders
                 ShipName = request.Name,
                 ShipAddress = request.Address,
                 ShipEmail = request.Email,
-                ShipPhoneNumber = request.Email,
+                ShipPhoneNumber = request.PhoneNumber,
                 UserId = request.UserId,
                 OrderDetails = orderdetails,
                 Status = Data.Enums.OrderStatus.Success,
@@ -59,11 +59,12 @@ namespace MinhDucEvent.Application.Catalog.Orders
             var query = from oder in _context.Orders
                         join oderdetails in _context.OrderDetails on oder.Id equals oderdetails.OrderId
                         select new { oder, oderdetails };
+
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.oder.ShipName.Contains(request.Keyword));
             //3. Paging
-            int totalRow = await query.CountAsync();
+            int totalRow = await _context.Orders.CountAsync();
 
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)

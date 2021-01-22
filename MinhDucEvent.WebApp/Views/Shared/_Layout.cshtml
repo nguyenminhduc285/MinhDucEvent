@@ -42,11 +42,11 @@
             <div id="welcomeLine" class="row">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <div class="span6">Welcome!<strong> @User.Identity.Name</strong></div>
+                    <div class="span6"><localize>Welcome! </localize><strong> @User.Identity.Name</strong></div>
                 }
                 else
                 {
-                    <div class="span6">Welcome!<strong> Guest!</strong></div>
+                    <div class="span6"><localize>Welcome! </localize><strong> Guest!</strong></div>
                 }
                 <div class="span6">
                     <div class="pull-right">

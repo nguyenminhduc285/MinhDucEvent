@@ -17,7 +17,7 @@
                     var slide = Model.Slides[index];
                     <div class="item @(index == 0?"active":"")">
                         <div class="container">
-                            <a href="@slide.Url"><img style="width:100%" src="@slide.Image" alt="@slide.Name" /></a>
+                            <a href="@slide.Url"><img style="width:1170;height:480px" src="@slide.Image" alt="@slide.Name" /></a>
                             <div class="carousel-caption">
                                 <h4>@slide.Name</h4>
                                 <p>@slide.Description</p>
@@ -85,7 +85,7 @@
         var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
         <li class="span3">
             <div class="thumbnail">
-                <a href="@url"><img src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" /></a>
+                <a href="@url"><img style="width:250px;height:250px" src="@(Configuration["BaseAddress"] + item.ThumbnailImage)" alt="@item.Name" /></a>
                 <div class="caption">
                     <h5>@item.Name</h5>
                     <p>
