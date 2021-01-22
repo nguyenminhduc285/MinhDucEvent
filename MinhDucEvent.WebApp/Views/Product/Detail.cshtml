@@ -49,12 +49,12 @@
     </div>
     <div class="span6">
         <h3>@Model.Product.Name</h3>
-        <small>@Model.Product.Description</small>
+        
         <hr class="soft" />
         <form class="form-horizontal qtyFrm">
             <div class="control-group">
                 <div class="controls">
-
+                    <label class="control-label"><span>@Model.Product.Price VND</span></label>
                     <a class="btn btn-add-cart" data-id="@Model.Product.Id" href="#"> <localize>Add to</localize> <i class=" icon-shopping-cart"></i></a>
                 </div>
             </div>
@@ -64,11 +64,9 @@
 
         <hr class="soft clr" />
         <p>
-            @Html.Raw(Model.Product.Details)
+            @Html.Raw(Model.Product.Description)
         </p>
-        <a class="btn btn-small pull-right" href="#detail"><localize>More Details</localize></a>
-        <br class="clr" />
-        <a href="#" name="detail"></a>
+        
         <hr class="soft" />
     </div>
 

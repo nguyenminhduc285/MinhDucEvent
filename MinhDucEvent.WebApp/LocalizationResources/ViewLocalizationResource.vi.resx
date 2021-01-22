@@ -121,6 +121,12 @@
     <value>Thêm vào</value>
     <comment>Common</comment>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Địa điểm</value>
+  </data>
+  <data name="ALREADY REGISTERED ?" xml:space="preserve">
+    <value>Đã có tài khoản ?</value>
+  </data>
   <data name="available products" xml:space="preserve">
     <value>sản phẩm có sẵn</value>
     <comment>/Product/Category</comment>
@@ -133,21 +139,45 @@
     <value>Liên hệ</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Continue Shopping" xml:space="preserve">
+    <value>Tiếp tục lựa chọn dịch vụ</value>
+  </data>
+  <data name="CREATE YOUR ACCOUNT" xml:space="preserve">
+    <value>Tạo tài khoản</value>
+  </data>
   <data name="Delivery" xml:space="preserve">
     <value>Giao hàng</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Thư điện tử</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>Tiếng Anh</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Enter your e-mail address to create an account." xml:space="preserve">
+    <value>Nhập email tạo tài khoản</value>
+  </data>
+  <data name="ESTIMATE YOUR SHIPPING" xml:space="preserve">
+    <value>Thông tin đặt lịch</value>
+  </data>
   <data name="Featured Products" xml:space="preserve">
     <value>Sản phẩm nổi bật</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="Forget password?" xml:space="preserve">
+    <value>Quên mật khẩu?</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Trang chủ</value>
     <comment>Common</comment>
+  </data>
+  <data name="Item(s)" xml:space="preserve">
+    <value>Sản phẩm</value>
   </data>
   <data name="Itemes in your cart" xml:space="preserve">
     <value>Sản phẩm trong giỏ hàng</value>
@@ -167,13 +197,40 @@
     <value>Xem thêm chi tiết</value>
     <comment>Common</comment>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
   <data name="New | Available" xml:space="preserve">
     <value>Có sẵn</value>
     <comment>Common</comment>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="Order puschased successful" xml:space="preserve">
+    <value>Đặt lịch thành công</value>
+  </data>
+  <data name="Order puschased unsuccessful" xml:space="preserve">
+    <value>Đặt lịch không thành công</value>
+  </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Ngày sử dụng dịch vụ</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
     <comment>Common</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Giá</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Sản phẩm</value>
   </data>
   <data name="Product Details" xml:space="preserve">
     <value>Chi tiết sản phẩm</value>
@@ -190,8 +247,20 @@
     <value>san-pham</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Purchase" xml:space="preserve">
+    <value>Đặt lịch</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
   <data name="Related Products" xml:space="preserve">
     <value>Sản phẩm liên quan</value>
+  </data>
+  <data name="SHOPPING CART" xml:space="preserve">
+    <value>Giỏ hàng</value>
+  </data>
+  <data name="Sign in" xml:space="preserve">
+    <value>Đăng nhập</value>
   </data>
   <data name="Sort By" xml:space="preserve">
     <value>sắp xếp theo</value>
@@ -200,6 +269,12 @@
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mãi</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tính tổng</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Tên tài khoản</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
@@ -212,5 +287,8 @@
   <data name="View details" xml:space="preserve">
     <value>Xem chi tiết</value>
     <comment>/Product/Category</comment>
+  </data>
+  <data name="Welcome!" xml:space="preserve">
+    <value>Xin chào</value>
   </data>
 </root>
